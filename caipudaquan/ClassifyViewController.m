@@ -7,6 +7,7 @@
 //
 
 #import "ClassifyViewController.h"
+#import "SearchViewController.h"
 
 #import "DVSwitch.h"
 #import "CategoryView.h"
@@ -14,7 +15,7 @@
 
 #import "NSObject+Property.h"
 
-@interface ClassifyViewController ()<UIScrollViewDelegate,CategorySearchDelegate>
+@interface ClassifyViewController ()<UIScrollViewDelegate,ClassifyDelegate>
 
 
 @property(nonatomic,strong) DVSwitch *segment;
@@ -22,8 +23,10 @@
 @end
 
 @implementation ClassifyViewController
-{
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
@@ -47,7 +50,7 @@
     [scroll addSubview:category];
     
     FoodView *food = [[FoodView alloc]initWithFrame:CGRectMake(WIDTH, 0, WIDTH, scroll.frame.size.height)];
-    food.backgroundColor = [UIColor yellowColor];
+    food.delegate = self;
     [scroll addSubview:food];
     
     [_segment setPressedHandler:^(NSUInteger index) {
@@ -79,14 +82,18 @@
 }
 
 #pragma mark -CategorySearch Delegate
--(void)CategorySearch
+-(void)SearchClick
 {
     NSLog(@"123123");
+    SearchViewController *search = [[SearchViewController alloc]init];
+    [self.navigationController pushViewController:search animated:YES];
 }
 
 -(void)CollectionCellSelected:(NSString *)url
 {
     NSLog(@"%@",url);
+    SearchViewController *search = [[SearchViewController alloc]init];
+    [self.navigationController pushViewController:search animated:YES];
 }
 
 #pragma mark -scrollview Delegate

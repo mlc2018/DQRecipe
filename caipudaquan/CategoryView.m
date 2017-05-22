@@ -91,9 +91,9 @@
 
 -(void)btnClick:(UIButton *)sender
 {
-    if([_delegate respondsToSelector:@selector(CategorySearch)])
+    if([_delegate respondsToSelector:@selector(SearchClick)])
     {
-        [_delegate CategorySearch];
+        [_delegate SearchClick];
     }
 }
 

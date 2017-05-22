@@ -7,16 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@protocol CategorySearchDelegate<NSObject>
-
--(void)CategorySearch;
--(void)CollectionCellSelected:(NSString *)url;
-
-@end
-
+#import "ClassifyProtocol.h"
 @interface CategoryView : UIView
 
-@property(nonatomic,weak) id<CategorySearchDelegate> delegate;
+@property(nonatomic,weak) id<ClassifyDelegate> delegate;
 
 @end

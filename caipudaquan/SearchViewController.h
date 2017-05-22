@@ -1,5 +1,5 @@
 //
-//  FoodView.h
+//  SearchViewController.h
 //  caipudaquan
 //
 //  Created by guoruiqing on 2017/5/22.
@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ClassifyProtocol.h"
 
-
-@interface FoodView : UIView
-
-@property(nonatomic,weak) id<ClassifyDelegate> delegate;
+@interface SearchViewController : UIViewController
 
 @end

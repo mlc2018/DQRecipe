@@ -21,7 +21,6 @@
 		EC28B8AC1ED17EA600E9A052 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8AB1ED17EA600E9A052 /* CollectionViewCell.m */; };
 		EC28B8B11ED17FED00E9A052 /* CollectionCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8AE1ED17FED00E9A052 /* CollectionCategoryModel.m */; };
 		EC28B8B21ED17FED00E9A052 /* CollectionViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8B01ED17FED00E9A052 /* CollectionViewHeaderView.m */; };
-		EC28B8B41ED1857A00E9A052 /* liwushuo.json in Resources */ = {isa = PBXBuildFile; fileRef = EC28B8B31ED1857A00E9A052 /* liwushuo.json */; };
 		EC28B8B71ED185B200E9A052 /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8B61ED185B200E9A052 /* NSObject+Property.m */; };
 		EC28B8BB1ED1B00200E9A052 /* fenlei.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC28B8B81ED1B00200E9A052 /* fenlei.txt */; };
 		EC28B8BC1ED1B00200E9A052 /* homeData.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC28B8B91ED1B00200E9A052 /* homeData.txt */; };
@@ -29,6 +28,7 @@
 		EC28B8C81ED1EEA700E9A052 /* DVSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8C71ED1EEA700E9A052 /* DVSwitch.m */; };
 		EC28B8D11ED2940600E9A052 /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8D01ED2940600E9A052 /* CategoryView.m */; };
 		EC28B8D41ED2941400E9A052 /* FoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8D31ED2941400E9A052 /* FoodView.m */; };
+		EC28B8D91ED3377D00E9A052 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8D81ED3377D00E9A052 /* SearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,6 @@
 		EC28B8AE1ED17FED00E9A052 /* CollectionCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCategoryModel.m; sourceTree = "<group>"; };
 		EC28B8AF1ED17FED00E9A052 /* CollectionViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewHeaderView.h; sourceTree = "<group>"; };
 		EC28B8B01ED17FED00E9A052 /* CollectionViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewHeaderView.m; sourceTree = "<group>"; };
-		EC28B8B31ED1857A00E9A052 /* liwushuo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = liwushuo.json; sourceTree = "<group>"; };
 		EC28B8B51ED185B200E9A052 /* NSObject+Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Property.h"; sourceTree = "<group>"; };
 		EC28B8B61ED185B200E9A052 /* NSObject+Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Property.m"; sourceTree = "<group>"; };
 		EC28B8B81ED1B00200E9A052 /* fenlei.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fenlei.txt; sourceTree = "<group>"; };
@@ -71,6 +70,9 @@
 		EC28B8D01ED2940600E9A052 /* CategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryView.m; sourceTree = "<group>"; };
 		EC28B8D21ED2941400E9A052 /* FoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodView.h; sourceTree = "<group>"; };
 		EC28B8D31ED2941400E9A052 /* FoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodView.m; sourceTree = "<group>"; };
+		EC28B8D61ED3116100E9A052 /* ClassifyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyProtocol.h; sourceTree = "<group>"; };
+		EC28B8D71ED3377D00E9A052 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		EC28B8D81ED3377D00E9A052 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,8 @@
 				EC28B8831ED02F5E00E9A052 /* AppDelegate.m */,
 				EC28B8851ED02F5E00E9A052 /* ViewController.h */,
 				EC28B8861ED02F5E00E9A052 /* ViewController.m */,
+				EC28B8D71ED3377D00E9A052 /* SearchViewController.h */,
+				EC28B8D81ED3377D00E9A052 /* SearchViewController.m */,
 				EC28B8881ED02F5E00E9A052 /* Main.storyboard */,
 				EC28B88B1ED02F5E00E9A052 /* Assets.xcassets */,
 				EC28B88D1ED02F5E00E9A052 /* LaunchScreen.storyboard */,
@@ -125,7 +129,6 @@
 				EC28B8B81ED1B00200E9A052 /* fenlei.txt */,
 				EC28B8B91ED1B00200E9A052 /* homeData.txt */,
 				EC28B8BA1ED1B00200E9A052 /* shicai.txt */,
-				EC28B8B31ED1857A00E9A052 /* liwushuo.json */,
 				EC28B8801ED02F5E00E9A052 /* main.m */,
 				EC28B8A61ED172F800E9A052 /* PrefixHeader.pch */,
 			);
@@ -155,6 +158,7 @@
 				EC28B8D01ED2940600E9A052 /* CategoryView.m */,
 				EC28B8D21ED2941400E9A052 /* FoodView.h */,
 				EC28B8D31ED2941400E9A052 /* FoodView.m */,
+				EC28B8D61ED3116100E9A052 /* ClassifyProtocol.h */,
 			);
 			name = classify;
 			sourceTree = "<group>";
@@ -260,7 +264,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC28B88F1ED02F5E00E9A052 /* LaunchScreen.storyboard in Resources */,
-				EC28B8B41ED1857A00E9A052 /* liwushuo.json in Resources */,
 				EC28B8BB1ED1B00200E9A052 /* fenlei.txt in Resources */,
 				EC28B8BD1ED1B00200E9A052 /* shicai.txt in Resources */,
 				EC28B88C1ED02F5E00E9A052 /* Assets.xcassets in Resources */,
@@ -282,6 +285,7 @@
 				EC28B89B1ED12E9C00E9A052 /* ClassifyViewController.m in Sources */,
 				EC28B8981ED12E8300E9A052 /* MoreViewController.m in Sources */,
 				EC28B8AC1ED17EA600E9A052 /* CollectionViewCell.m in Sources */,
+				EC28B8D91ED3377D00E9A052 /* SearchViewController.m in Sources */,
 				EC28B8841ED02F5E00E9A052 /* AppDelegate.m in Sources */,
 				EC28B8D41ED2941400E9A052 /* FoodView.m in Sources */,
 				EC28B8B11ED17FED00E9A052 /* CollectionCategoryModel.m in Sources */,
