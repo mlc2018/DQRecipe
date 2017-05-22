@@ -16,6 +16,19 @@
 		EC28B8981ED12E8300E9A052 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8971ED12E8300E9A052 /* MoreViewController.m */; };
 		EC28B89B1ED12E9C00E9A052 /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B89A1ED12E9C00E9A052 /* ClassifyViewController.m */; };
 		EC28B89E1ED12EB800E9A052 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B89D1ED12EB800E9A052 /* HomeViewController.m */; };
+		EC28B8A51ED1710200E9A052 /* CollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8A41ED1710200E9A052 /* CollectionViewFlowLayout.m */; };
+		EC28B8A91ED17BC100E9A052 /* LeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8A81ED17BC100E9A052 /* LeftTableViewCell.m */; };
+		EC28B8AC1ED17EA600E9A052 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8AB1ED17EA600E9A052 /* CollectionViewCell.m */; };
+		EC28B8B11ED17FED00E9A052 /* CollectionCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8AE1ED17FED00E9A052 /* CollectionCategoryModel.m */; };
+		EC28B8B21ED17FED00E9A052 /* CollectionViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8B01ED17FED00E9A052 /* CollectionViewHeaderView.m */; };
+		EC28B8B41ED1857A00E9A052 /* liwushuo.json in Resources */ = {isa = PBXBuildFile; fileRef = EC28B8B31ED1857A00E9A052 /* liwushuo.json */; };
+		EC28B8B71ED185B200E9A052 /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8B61ED185B200E9A052 /* NSObject+Property.m */; };
+		EC28B8BB1ED1B00200E9A052 /* fenlei.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC28B8B81ED1B00200E9A052 /* fenlei.txt */; };
+		EC28B8BC1ED1B00200E9A052 /* homeData.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC28B8B91ED1B00200E9A052 /* homeData.txt */; };
+		EC28B8BD1ED1B00200E9A052 /* shicai.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC28B8BA1ED1B00200E9A052 /* shicai.txt */; };
+		EC28B8C81ED1EEA700E9A052 /* DVSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8C71ED1EEA700E9A052 /* DVSwitch.m */; };
+		EC28B8D11ED2940600E9A052 /* CategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8D01ED2940600E9A052 /* CategoryView.m */; };
+		EC28B8D41ED2941400E9A052 /* FoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8D31ED2941400E9A052 /* FoodView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +48,29 @@
 		EC28B89A1ED12E9C00E9A052 /* ClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyViewController.m; sourceTree = "<group>"; };
 		EC28B89C1ED12EB800E9A052 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		EC28B89D1ED12EB800E9A052 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		EC28B8A31ED1710200E9A052 /* CollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		EC28B8A41ED1710200E9A052 /* CollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		EC28B8A61ED172F800E9A052 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		EC28B8A71ED17BC100E9A052 /* LeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewCell.h; sourceTree = "<group>"; };
+		EC28B8A81ED17BC100E9A052 /* LeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewCell.m; sourceTree = "<group>"; };
+		EC28B8AA1ED17EA600E9A052 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		EC28B8AB1ED17EA600E9A052 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		EC28B8AD1ED17FED00E9A052 /* CollectionCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCategoryModel.h; sourceTree = "<group>"; };
+		EC28B8AE1ED17FED00E9A052 /* CollectionCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCategoryModel.m; sourceTree = "<group>"; };
+		EC28B8AF1ED17FED00E9A052 /* CollectionViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewHeaderView.h; sourceTree = "<group>"; };
+		EC28B8B01ED17FED00E9A052 /* CollectionViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewHeaderView.m; sourceTree = "<group>"; };
+		EC28B8B31ED1857A00E9A052 /* liwushuo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = liwushuo.json; sourceTree = "<group>"; };
+		EC28B8B51ED185B200E9A052 /* NSObject+Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Property.h"; sourceTree = "<group>"; };
+		EC28B8B61ED185B200E9A052 /* NSObject+Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Property.m"; sourceTree = "<group>"; };
+		EC28B8B81ED1B00200E9A052 /* fenlei.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fenlei.txt; sourceTree = "<group>"; };
+		EC28B8B91ED1B00200E9A052 /* homeData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = homeData.txt; sourceTree = "<group>"; };
+		EC28B8BA1ED1B00200E9A052 /* shicai.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shicai.txt; sourceTree = "<group>"; };
+		EC28B8C61ED1EEA700E9A052 /* DVSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSwitch.h; sourceTree = "<group>"; };
+		EC28B8C71ED1EEA700E9A052 /* DVSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSwitch.m; sourceTree = "<group>"; };
+		EC28B8CF1ED2940600E9A052 /* CategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryView.h; sourceTree = "<group>"; };
+		EC28B8D01ED2940600E9A052 /* CategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryView.m; sourceTree = "<group>"; };
+		EC28B8D21ED2941400E9A052 /* FoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodView.h; sourceTree = "<group>"; };
+		EC28B8D31ED2941400E9A052 /* FoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +122,12 @@
 		EC28B87F1ED02F5E00E9A052 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EC28B8B81ED1B00200E9A052 /* fenlei.txt */,
+				EC28B8B91ED1B00200E9A052 /* homeData.txt */,
+				EC28B8BA1ED1B00200E9A052 /* shicai.txt */,
+				EC28B8B31ED1857A00E9A052 /* liwushuo.json */,
 				EC28B8801ED02F5E00E9A052 /* main.m */,
+				EC28B8A61ED172F800E9A052 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -103,8 +144,17 @@
 		EC28B8A01ED1336F00E9A052 /* classify */ = {
 			isa = PBXGroup;
 			children = (
+				EC28B8D51ED2D0BB00E9A052 /* Collection */,
+				EC28B8BE1ED1D60800E9A052 /* DVSwitch */,
+				EC28B8A21ED170B600E9A052 /* Tools */,
 				EC28B8991ED12E9C00E9A052 /* ClassifyViewController.h */,
 				EC28B89A1ED12E9C00E9A052 /* ClassifyViewController.m */,
+				EC28B8A71ED17BC100E9A052 /* LeftTableViewCell.h */,
+				EC28B8A81ED17BC100E9A052 /* LeftTableViewCell.m */,
+				EC28B8CF1ED2940600E9A052 /* CategoryView.h */,
+				EC28B8D01ED2940600E9A052 /* CategoryView.m */,
+				EC28B8D21ED2941400E9A052 /* FoodView.h */,
+				EC28B8D31ED2941400E9A052 /* FoodView.m */,
 			);
 			name = classify;
 			sourceTree = "<group>";
@@ -116,6 +166,39 @@
 				EC28B89D1ED12EB800E9A052 /* HomeViewController.m */,
 			);
 			name = home;
+			sourceTree = "<group>";
+		};
+		EC28B8A21ED170B600E9A052 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				EC28B8B51ED185B200E9A052 /* NSObject+Property.h */,
+				EC28B8B61ED185B200E9A052 /* NSObject+Property.m */,
+				EC28B8A31ED1710200E9A052 /* CollectionViewFlowLayout.h */,
+				EC28B8A41ED1710200E9A052 /* CollectionViewFlowLayout.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		EC28B8BE1ED1D60800E9A052 /* DVSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				EC28B8C61ED1EEA700E9A052 /* DVSwitch.h */,
+				EC28B8C71ED1EEA700E9A052 /* DVSwitch.m */,
+			);
+			name = DVSwitch;
+			sourceTree = "<group>";
+		};
+		EC28B8D51ED2D0BB00E9A052 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				EC28B8AD1ED17FED00E9A052 /* CollectionCategoryModel.h */,
+				EC28B8AE1ED17FED00E9A052 /* CollectionCategoryModel.m */,
+				EC28B8AF1ED17FED00E9A052 /* CollectionViewHeaderView.h */,
+				EC28B8B01ED17FED00E9A052 /* CollectionViewHeaderView.m */,
+				EC28B8AA1ED17EA600E9A052 /* CollectionViewCell.h */,
+				EC28B8AB1ED17EA600E9A052 /* CollectionViewCell.m */,
+			);
+			name = Collection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,8 +260,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC28B88F1ED02F5E00E9A052 /* LaunchScreen.storyboard in Resources */,
+				EC28B8B41ED1857A00E9A052 /* liwushuo.json in Resources */,
+				EC28B8BB1ED1B00200E9A052 /* fenlei.txt in Resources */,
+				EC28B8BD1ED1B00200E9A052 /* shicai.txt in Resources */,
 				EC28B88C1ED02F5E00E9A052 /* Assets.xcassets in Resources */,
 				EC28B88A1ED02F5E00E9A052 /* Main.storyboard in Resources */,
+				EC28B8BC1ED1B00200E9A052 /* homeData.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,11 +276,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC28B8B21ED17FED00E9A052 /* CollectionViewHeaderView.m in Sources */,
 				EC28B8871ED02F5E00E9A052 /* ViewController.m in Sources */,
+				EC28B8C81ED1EEA700E9A052 /* DVSwitch.m in Sources */,
 				EC28B89B1ED12E9C00E9A052 /* ClassifyViewController.m in Sources */,
 				EC28B8981ED12E8300E9A052 /* MoreViewController.m in Sources */,
+				EC28B8AC1ED17EA600E9A052 /* CollectionViewCell.m in Sources */,
 				EC28B8841ED02F5E00E9A052 /* AppDelegate.m in Sources */,
+				EC28B8D41ED2941400E9A052 /* FoodView.m in Sources */,
+				EC28B8B11ED17FED00E9A052 /* CollectionCategoryModel.m in Sources */,
+				EC28B8D11ED2940600E9A052 /* CategoryView.m in Sources */,
+				EC28B8A91ED17BC100E9A052 /* LeftTableViewCell.m in Sources */,
 				EC28B8811ED02F5E00E9A052 /* main.m in Sources */,
+				EC28B8A51ED1710200E9A052 /* CollectionViewFlowLayout.m in Sources */,
+				EC28B8B71ED185B200E9A052 /* NSObject+Property.m in Sources */,
 				EC28B89E1ED12EB800E9A052 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = caipudaquan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhhl.caipudaquan;
@@ -325,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = caipudaquan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhhl.caipudaquan;
