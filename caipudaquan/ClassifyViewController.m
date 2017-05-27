@@ -26,6 +26,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
 }
 
@@ -73,7 +74,7 @@
     {
         NSArray *titles = @[@"分类",@"食材"];
         _segment = [[DVSwitch alloc]initWithStringsArray:titles];
-        [_segment setFrame:CGRectMake(0, 0, 200, 30)];
+        [_segment setFrame:CGRectMake(0, 0, 200*SCALE, 30)];
         _segment.labelTextColorInsideSlider = [UIColor colorWithRed:253/255.0 green:108.0/255.0 blue:33/255.0 alpha:1.0];
         _segment.backgroundColor = [UIColor clearColor];
     }

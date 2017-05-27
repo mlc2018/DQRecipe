@@ -13,6 +13,8 @@
 
 #import "LeftTableViewCell.h"
 
+#import "CategoryModel.h"
+
 @interface CategoryView()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UIScrollViewDelegate>
 
 @property(nonatomic,strong) UITableView *tableView;
@@ -51,12 +53,7 @@
 {
     _selectIndex = 0;
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"fenlei" ofType:@"txt"];
-    
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    _dataSource = dict[@"data"];
-    NSLog(@"%ld",[_dataSource count]);
+   // NSLog(@"%ld",[_dataSource count]);
     [_tableView reloadData];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 
@@ -66,7 +63,7 @@
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundColor:rgba(238, 238, 238, 1)];
-    [btn setFrame:CGRectMake(15, 20, self.frame.size.width - 30, 45)];
+    [btn setFrame:CGRectMake(15*SCALE, 15*SCALE, self.frame.size.width - 30*SCALE, 45*SCALE)];
     [btn setTitle:@"想吃什么搜这里，如川菜" forState:UIControlStateNormal];
     [btn setTitleColor:rgba(200, 200, 200, 1) forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -77,16 +74,12 @@
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, btn.frame.origin.y + btn.frame.size.height + 15, WIDTH, 1.0)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, btn.frame.origin.y + btn.frame.size.height + 15*SCALE, WIDTH, 1.0)];
     [line setBackgroundColor:rgba(238, 238, 238, 1)];
     [self addSubview:line];
     
     [self addSubview:self.tableView];
     [self addSubview:self.collectionView];
-    
-    
-
-    
 }
 
 -(void)btnClick:(UIButton *)sender
@@ -102,7 +95,11 @@
 {
     if(!_dataSource)
     {
-        _dataSource = [NSMutableArray array];
+       // _dataSource = [NSMutableArray array];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"fenlei" ofType:@"txt"];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        _dataSource = dict[@"data"];
     }
     
     return _dataSource;
@@ -112,7 +109,7 @@
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 81, 80,HEIGHT - 81 - 64 - 49)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 75*SCALE + 1, 80,HEIGHT - 75*SCALE - 64 - 49 - 1)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         //_tableView.rowHeight = 55;
@@ -140,7 +137,7 @@
 {
     LeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_left forIndexPath:indexPath];
     //CollectionCategoryModel *model = self.dataSource[indexPath.row];
-    NSString *name = [[_dataSource objectAtIndex:indexPath.row] objectForKey:@"name"];
+    NSString *name = [[self.dataSource objectAtIndex:indexPath.row] objectForKey:@"name"];
     cell.name.text = name;
     return cell;
 }
@@ -151,17 +148,28 @@
     
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
-    _collectionDates = [[[self.dataSource[indexPath.row] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
+   // _collectionDates = [[[self.dataSource[indexPath.row] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
+    
+    [self SetCollectionDataWithIndex:indexPath.row];
     
     [self.collectionView reloadData];
+}
+
+-(void)SetCollectionDataWithIndex:(NSInteger)index
+{
+    self.collectionDates =[[[self.dataSource[index] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
 }
 
 -(NSMutableArray *)collectionDates
 {
     if(!_collectionDates)
     {
-        //_collectionDates = [NSMutableArray array];
-        _collectionDates = [[[self.dataSource[0] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
+        NSArray *array =[[[self.dataSource[0] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
+        
+        for (NSDictionary *dic in array) {
+            CategoryModel *model = [CategoryModel CategoryWithDict:dic];
+            [_collectionDates addObject:model];
+        }
     }
     
     return _collectionDates;
@@ -188,7 +196,7 @@
 {
     if (!_collectionView)
     {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(2 + 80, 81, WIDTH - 80 - 4, HEIGHT - 81  - 49 - 44 - 20) collectionViewLayout:self.flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(2 + 80, 75*SCALE + 1, WIDTH - 80 - 4, HEIGHT - 75*SCALE  - 49 - 44 - 20 - 1) collectionViewLayout:self.flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = NO;
@@ -239,12 +247,12 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake((WIDTH - 80 - 4 - 4) / 3,
-                       40);
+                       40*SCALE);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(WIDTH, 30);
+    return CGSizeMake(WIDTH, 30*SCALE);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

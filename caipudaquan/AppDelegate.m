@@ -11,6 +11,8 @@
 #import "HomeViewController.h"
 #import "ClassifyViewController.h"
 #import "MoreViewController.h"
+#import "AFAppDotNetAPIClient.h"
+#import <SystemConfiguration/CaptiveNetwork.h>
 
 @interface AppDelegate ()
 
@@ -21,6 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     
     UITabBarController *tb = [[UITabBarController alloc]init];
     
@@ -41,8 +44,7 @@
     for(int i=0;i<3;i++)
     {
         UIViewController *vc = [controllers objectAtIndex:i];
-        vc.view.backgroundColor = [UIColor whiteColor];
-        
+                
         vc.tabBarItem.title = [titleArray objectAtIndex:i];
         vc.tabBarItem.image = [UIImage imageNamed:[images objectAtIndex:i]];
         vc.tabBarItem.selectedImage = [[UIImage imageNamed:[selectedImage objectAtIndex:i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -57,6 +59,8 @@
     
     
     tb.viewControllers = tabArray;
+    
+   // [self selfLogin];
     
     return YES;
 }
@@ -87,6 +91,28 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+-(void)selfLogin
+{
+     NSString *ccc = @"device=ios#iPhone9,2#10.3.2#2.0.0#1242#2208#appStore#Wifi#232.70#com.jnzc.recipebook#1;t=1495534727;xhcode=F5E68B97128A17A7F5795B3469A314C4;snsuid=1391630090240;hmac=73b98ee2b7f1d81312c4b49dea847922;User-Agent=xhapp#ios#2.0.0;token=0c36d58be7321f80;appid=1;JSESSIONID=CD56DB0A3BE39E976860736A9DAF4BB9";
+    
+    [[AFAppDotNetAPIClient sharedClient].requestSerializer setHTTPShouldHandleCookies:YES];
+    [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:ccc forHTTPHeaderField:@"Cookie"];
+    
+    [[AFAppDotNetAPIClient sharedClient] GET:@"dish/search?pg=1&world=aa" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+       
+    }];
+
+    
+}
+
+
 
 
 @end

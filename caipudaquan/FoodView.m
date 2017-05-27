@@ -66,7 +66,7 @@
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundColor:rgba(238, 238, 238, 1)];
-    [btn setFrame:CGRectMake(15, 20, self.frame.size.width - 30, 45)];
+    [btn setFrame:CGRectMake(15*SCALE, 15*SCALE, self.frame.size.width - 30*SCALE, 45*SCALE)];
     [btn setTitle:@"想吃什么搜这里，如川菜" forState:UIControlStateNormal];
     [btn setTitleColor:rgba(200, 200, 200, 1) forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -77,7 +77,7 @@
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, btn.frame.origin.y + btn.frame.size.height + 15, WIDTH, 1.0)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, btn.frame.origin.y + btn.frame.size.height + 15*SCALE, WIDTH, 1.0)];
     [line setBackgroundColor:rgba(238, 238, 238, 1)];
     [self addSubview:line];
     
@@ -112,7 +112,7 @@
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 81, 80,HEIGHT - 81 - 64 - 49)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 75*SCALE + 1, 80,HEIGHT - 75*SCALE - 1 - 64 - 49)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         //_tableView.rowHeight = 55;
@@ -188,7 +188,7 @@
 {
     if (!_collectionView)
     {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(2 + 80, 81, WIDTH - 80 - 4, HEIGHT - 81  - 49 - 44 - 20) collectionViewLayout:self.flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(2 + 80, 75*SCALE+1, WIDTH - 80 - 4, HEIGHT - SCALE*75 - 1 - 49 - 44 - 20) collectionViewLayout:self.flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = NO;
@@ -281,7 +281,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(WIDTH, 30);
+    return CGSizeMake(WIDTH, 30*SCALE);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

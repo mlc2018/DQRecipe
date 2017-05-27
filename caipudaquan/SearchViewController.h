@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategoryModel.h"
 
 @interface SearchViewController : UIViewController
+
+@property(nonatomic,strong)CategoryModel *category;
+
+-(instancetype)initWithCategoryModel:(CategoryModel *)model;
 
 @end
