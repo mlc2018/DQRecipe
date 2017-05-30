@@ -30,6 +30,12 @@
     NSMutableArray *_cellArray;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 
 -(NSMutableArray *)hotArray
 {
@@ -40,8 +46,13 @@
         NSArray *array = [NSArray arrayNamed:@"category_hot"];
         
         for (NSDictionary *dic in array) {
-            id obj = [CategoryModel CategoryWithDict:dic];
-            [_hotArray addObject:obj];
+            /*
+            CategoryModel *model = [[CategoryModel alloc]init];
+            model.name =[dic objectForKey:@"name"];
+            model.appurl =[dic objectForKey:@"appurl"];
+             */
+            CategoryModel *model = [CategoryModel CategoryWithDict:dic];
+            [_hotArray addObject:model];
         }
         
     }
@@ -201,7 +212,7 @@
 -(void)btnClick:(UIButton *)sender
 {
     CategoryButton *btn = (CategoryButton *)sender;
-    if([btn.category.appurl isEqualToString:@""])
+    if([btn.category.url isEqualToString:@""])
     {
         self.tabBarController.selectedIndex = 1;
         return;

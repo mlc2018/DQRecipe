@@ -23,7 +23,6 @@
 		EC28B8A51ED1710200E9A052 /* CollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8A41ED1710200E9A052 /* CollectionViewFlowLayout.m */; };
 		EC28B8A91ED17BC100E9A052 /* LeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8A81ED17BC100E9A052 /* LeftTableViewCell.m */; };
 		EC28B8AC1ED17EA600E9A052 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8AB1ED17EA600E9A052 /* CollectionViewCell.m */; };
-		EC28B8B11ED17FED00E9A052 /* CollectionCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8AE1ED17FED00E9A052 /* CollectionCategoryModel.m */; };
 		EC28B8B21ED17FED00E9A052 /* CollectionViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8B01ED17FED00E9A052 /* CollectionViewHeaderView.m */; };
 		EC28B8B71ED185B200E9A052 /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28B8B61ED185B200E9A052 /* NSObject+Property.m */; };
 		EC28B8BB1ED1B00200E9A052 /* fenlei.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC28B8B81ED1B00200E9A052 /* fenlei.txt */; };
@@ -121,8 +120,6 @@
 		EC28B8A81ED17BC100E9A052 /* LeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewCell.m; sourceTree = "<group>"; };
 		EC28B8AA1ED17EA600E9A052 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		EC28B8AB1ED17EA600E9A052 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
-		EC28B8AD1ED17FED00E9A052 /* CollectionCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCategoryModel.h; sourceTree = "<group>"; };
-		EC28B8AE1ED17FED00E9A052 /* CollectionCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCategoryModel.m; sourceTree = "<group>"; };
 		EC28B8AF1ED17FED00E9A052 /* CollectionViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewHeaderView.h; sourceTree = "<group>"; };
 		EC28B8B01ED17FED00E9A052 /* CollectionViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewHeaderView.m; sourceTree = "<group>"; };
 		EC28B8B51ED185B200E9A052 /* NSObject+Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Property.h"; sourceTree = "<group>"; };
@@ -405,8 +402,6 @@
 		EC28B8D51ED2D0BB00E9A052 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				EC28B8AD1ED17FED00E9A052 /* CollectionCategoryModel.h */,
-				EC28B8AE1ED17FED00E9A052 /* CollectionCategoryModel.m */,
 				EC28B8AF1ED17FED00E9A052 /* CollectionViewHeaderView.h */,
 				EC28B8B01ED17FED00E9A052 /* CollectionViewHeaderView.m */,
 				EC28B8AA1ED17EA600E9A052 /* CollectionViewCell.h */,
@@ -707,7 +702,6 @@
 				EC28B9B21ED6887600E9A052 /* UIImage+GIF.m in Sources */,
 				EC28B9241ED42D4D00E9A052 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EC28B9AA1ED6887600E9A052 /* SDImageCacheConfig.m in Sources */,
-				EC28B8B11ED17FED00E9A052 /* CollectionCategoryModel.m in Sources */,
 				EC28B9071ED42D2400E9A052 /* AFNetworkReachabilityManager.m in Sources */,
 				EC28B9C81ED6889C00E9A052 /* TAAbstractDotView.m in Sources */,
 				EC28B9CC1ED6889C00E9A052 /* SDCollectionViewCell.m in Sources */,

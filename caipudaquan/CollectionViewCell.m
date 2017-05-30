@@ -7,7 +7,9 @@
 //
 
 #import "CollectionViewCell.h"
-#import "CollectionCategoryModel.h"
+
+
+#import "CategoryModel.h"
 
 @interface CollectionViewCell ()
 
@@ -31,7 +33,7 @@
     return self;
 }
 
-- (void)setModel:(SubCategoryModel *)model
+- (void)setModel:(CategoryModel *)model
 {
     self.name.text = model.name;
 }

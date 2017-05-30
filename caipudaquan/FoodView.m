@@ -10,10 +10,10 @@
 
 #import "CollectionViewFlowLayout.h"
 #import "CollectionViewCell.h"
-#import "CollectionCategoryModel.h"
 #import "CollectionViewHeaderView.h"
 
 #import "LeftTableViewCell.h"
+#import "CategoryModel.h"
 
 @interface FoodView()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UIScrollViewDelegate>
 
@@ -235,7 +235,7 @@
     
     //SubCategoryModel *model = self.collectionDates[indexPath.row];
     
-    SubCategoryModel *model = [[SubCategoryModel alloc]init];
+    CategoryModel *model = [[CategoryModel alloc]init];
     
     NSDictionary *dic =[[self.collectionDates[indexPath.section] objectForKey:@"list"] objectAtIndex:indexPath.row];
     

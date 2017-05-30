@@ -3,67 +3,67 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E7%B4%A0%E8%8F%9C</string>
 		<key>name</key>
 		<string>素菜</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E5%AE%B6%E5%B8%B8%E8%8F%9C</string>
 		<key>name</key>
 		<string>家常菜</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E7%B2%A5</string>
 		<key>name</key>
 		<string>粥</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E6%B1%A4</string>
 		<key>name</key>
 		<string>汤</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E5%B7%9D%E8%8F%9C</string>
 		<key>name</key>
 		<string>川菜</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E7%B2%A4%E8%8F%9C</string>
 		<key>name</key>
 		<string>粤菜</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E6%97%A9%E9%A4%90</string>
 		<key>name</key>
 		<string>早餐</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E5%AE%B5%E5%A4%9C</string>
 		<key>name</key>
 		<string>宵夜</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E5%86%9C%E5%AE%B6%E8%8F%9C</string>
 		<key>name</key>
 		<string>农家菜</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E9%A5%AE%E5%93%81</string>
 		<key>name</key>
 		<string>饮品</string>
 	</dict>
 	<dict>
-		<key>appurl</key>
+		<key>url</key>
 		<string>/app5/so.app?type=caipu&amp;s=%E6%B8%85%E6%B7%A1</string>
 		<key>name</key>
 		<string>清淡</string>
@@ -71,7 +71,7 @@
 	<dict>
 		<key>name</key>
 		<string>更多</string>
-		<key>appurl</key>
+		<key>url</key>
 		<string></string>
 	</dict>
 </array>

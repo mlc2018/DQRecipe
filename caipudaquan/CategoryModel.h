@@ -11,7 +11,7 @@
 @interface CategoryModel : NSObject
 
 @property(nonatomic,strong) NSString *name;
-@property(nonatomic,strong) NSString *appurl;
+@property(nonatomic,strong) NSString *url;
 
 +(instancetype)CategoryWithDict:(NSDictionary *)dict;
 @end

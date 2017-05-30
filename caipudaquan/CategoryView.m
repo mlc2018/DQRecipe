@@ -9,7 +9,6 @@
 #import "CategoryView.h"
 #import "CollectionViewFlowLayout.h"
 #import "CollectionViewCell.h"
-#import "CollectionCategoryModel.h"
 
 #import "LeftTableViewCell.h"
 
@@ -29,10 +28,10 @@
 @end
 
 @implementation CategoryView
-{
-@private
-    NSInteger _selectIndex;
-}
+
+
+NSInteger _selectIndex = 0;
+
 
 
 -(instancetype)initWithFrame:(CGRect)frame
@@ -150,23 +149,45 @@
     
    // _collectionDates = [[[self.dataSource[indexPath.row] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
     
-    [self SetCollectionDataWithIndex:indexPath.row];
+    [self ResetCollectionData];
     
     [self.collectionView reloadData];
 }
 
--(void)SetCollectionDataWithIndex:(NSInteger)index
+-(void)ResetCollectionData
 {
-    self.collectionDates =[[[self.dataSource[index] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
+    [self.collectionDates removeAllObjects];
+    
+    _collectionDates = [NSMutableArray array];
+    NSArray *array =[[[self.dataSource[_selectIndex] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
+    
+    for (NSDictionary *dic in array) {
+        
+        /*
+         SubCategoryModel *model = [[SubCategoryModel alloc]init];
+         model.name =[dic objectForKey:@"name"];
+         model.url =[dic objectForKey:@"url"];
+         */
+        CategoryModel *model = [CategoryModel CategoryWithDict:dic];
+        [_collectionDates addObject:model];
+    }
+
 }
 
 -(NSMutableArray *)collectionDates
 {
     if(!_collectionDates)
     {
-        NSArray *array =[[[self.dataSource[0] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
+        _collectionDates = [NSMutableArray array];
+        NSArray *array =[[[self.dataSource[_selectIndex] objectForKey:@"list"] objectAtIndex:0] objectForKey:@"list"];
         
         for (NSDictionary *dic in array) {
+            
+            /*
+            SubCategoryModel *model = [[SubCategoryModel alloc]init];
+            model.name =[dic objectForKey:@"name"];
+            model.url =[dic objectForKey:@"url"];
+             */
             CategoryModel *model = [CategoryModel CategoryWithDict:dic];
             [_collectionDates addObject:model];
         }
@@ -230,11 +251,14 @@
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier_CollectionView forIndexPath:indexPath];
     
     NSLog(@"%@",self.collectionDates[indexPath.row]);
-    //SubCategoryModel *model = self.collectionDates[indexPath.row];
+    CategoryModel *model = self.collectionDates[indexPath.row];
     
+    /*
     SubCategoryModel *model = [[SubCategoryModel alloc]init];
     model.name =[self.collectionDates[indexPath.row] objectForKey:@"name"];
     model.url =[self.collectionDates[indexPath.row] objectForKey:@"url"];
+     
+     */ 
     
     
     cell.model = model;

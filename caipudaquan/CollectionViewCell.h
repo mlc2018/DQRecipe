@@ -10,10 +10,10 @@
 
 #define kCellIdentifier_CollectionView @"CollectionViewCell"
 
-@class SubCategoryModel;
+@class CategoryModel;
 
 @interface CollectionViewCell : UICollectionViewCell
 
-@property(nonatomic,strong) SubCategoryModel *model;
+@property(nonatomic,strong) CategoryModel *model;
 
 @end
