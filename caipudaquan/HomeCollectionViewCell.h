@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CookbookModel.h"
 
 @interface HomeCollectionViewCell : UICollectionViewCell
-@property(nonatomic ,strong)UIImageView *imgView;
-@property(nonatomic ,strong)UILabel *text;
+
+@property(nonatomic,strong)CookbookModel *cookModel;
+
+
 
 @end

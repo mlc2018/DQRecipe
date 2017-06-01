@@ -283,8 +283,8 @@ NSInteger _selectIndex = 0;
 {
     if([_delegate respondsToSelector:@selector(CollectionCellSelected:)])
     {
-        NSString *url = [self.collectionDates[indexPath.row] objectForKey:@"url"];
-        [_delegate CollectionCellSelected:url];
+        CategoryModel *model = self.collectionDates[indexPath.row];
+        [_delegate CollectionCellSelected:model];
     }
     
     

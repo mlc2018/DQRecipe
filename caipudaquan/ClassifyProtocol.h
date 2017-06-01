@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CategoryModel.h"
 
 @protocol ClassifyDelegate<NSObject>
 -(void)SearchClick;
--(void)CollectionCellSelected:(NSString *)url;
+-(void)CollectionCellSelected:(CategoryModel *)model;
 @end

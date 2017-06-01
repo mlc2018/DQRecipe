@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "UIBarButtonItem+Extension.h"
 
 @interface SearchViewController ()
 
@@ -56,14 +57,11 @@
 
 - (void)addBackItem {
     
-    UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
-    back.frame = CGRectMake(0, 0, 15, 15);
-    [back addTarget:self action:@selector(popNav) forControlEvents:UIControlEventTouchUpInside];
-    [back setBackgroundImage:[UIImage imageNamed:@"nav_back_button"] forState:UIControlStateNormal];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonLeftItemWithImageName:@"nav_back_button" target:self action:@selector(popNav)];
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:back];
-    self.navigationItem.leftBarButtonItem = item;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:@"搜索" titleColor:[UIColor whiteColor] target:self action:@selector(popNav)];
     
+    /*
     UIButton *search= [UIButton buttonWithType:UIButtonTypeCustom];
     search.frame = CGRectMake(0, 0, 40, 15);
     [search addTarget:self action:@selector(popNav) forControlEvents:UIControlEventTouchUpInside];
@@ -71,6 +69,7 @@
     
     UIBarButtonItem *item2 = [[UIBarButtonItem alloc]initWithCustomView:search];
     self.navigationItem.rightBarButtonItem = item2;
+     */
     
     UIView* view1 = [[UIView alloc]initWithFrame:CGRectMake(55*SCALE, 25, WIDTH - 130*SCALE, 34)];
     view1.tag = 102;
@@ -104,7 +103,7 @@
        // _textField.delegate = self;
         if(self.category)
         {
-            _textField.text = self.category.name;
+            _textField.text = self.category.name; 
         }
     }
     return _textField;

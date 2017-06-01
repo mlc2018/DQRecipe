@@ -233,8 +233,6 @@
 {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier_CollectionView forIndexPath:indexPath];
     
-    //SubCategoryModel *model = self.collectionDates[indexPath.row];
-    
     CategoryModel *model = [[CategoryModel alloc]init];
     
     NSDictionary *dic =[[self.collectionDates[indexPath.section] objectForKey:@"list"] objectAtIndex:indexPath.row];
@@ -289,10 +287,10 @@
     if([_delegate respondsToSelector:@selector(CollectionCellSelected:)])
     {
         NSDictionary *dic =[[self.collectionDates[indexPath.section] objectForKey:@"list"] objectAtIndex:indexPath.row];
+        
+        CategoryModel *model = [CategoryModel CategoryWithDict:dic];
     
-        NSString *url =[dic objectForKey:@"url"];
-
-        [_delegate CollectionCellSelected:url];
+        [_delegate CollectionCellSelected:model];
     }
     
     

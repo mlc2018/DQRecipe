@@ -90,10 +90,10 @@
     [self.navigationController pushViewController:search animated:YES];
 }
 
--(void)CollectionCellSelected:(NSString *)url
+-(void)CollectionCellSelected:(CategoryModel *)model
 {
-    NSLog(@"%@",url);
-    SearchViewController *search = [[SearchViewController alloc]init];
+
+    SearchViewController *search = [[SearchViewController alloc]initWithCategoryModel:model];
     [self.navigationController pushViewController:search animated:YES];
 }
 

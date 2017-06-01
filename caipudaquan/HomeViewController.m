@@ -11,9 +11,12 @@
 #import "HomeCollectionViewCell.h"
 
 #import "SearchViewController.h"
+#import "DetailViewController.h"
 
 #import "CategoryModel.h"
 #import "CategoryButton.h"
+
+#import "CookbookModel.h"
 
 #import "NSArray+Category.h"
 #import "UIImageView+WebCache.h"
@@ -32,7 +35,6 @@
 @implementation HomeViewController
 {
     UIView *_headView;
-    NSMutableArray *_cellArray;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -71,7 +73,8 @@
         NSMutableSet *randomSet = [self getRandomSet];
         
         for (id obj in randomSet) {
-            [_loopArray addObject:obj];
+            CookbookModel *model = [CookbookModel CookbookWithDict:obj];
+            [_loopArray addObject:model];
         }
     }
     
@@ -86,7 +89,8 @@
         NSMutableSet *randomSet = [self getRandomSet];
         
         for (id obj in randomSet) {
-            [_fineArray addObject:obj];
+            CookbookModel *model = [CookbookModel CookbookWithDict:obj];
+            [_fineArray addObject:model];
         }
     }
     
@@ -107,11 +111,11 @@
     return randomSet;
 }
 
--(NSMutableArray *)getValuesWithArrayDic:(NSArray *)array ForKeys:(NSString *)key
+-(NSMutableArray *)getValuesWithCookBookArray:(NSArray *)array ForKeys:(NSString *)key
 {
     NSMutableArray *values = [NSMutableArray array];
     for (NSDictionary *dic in array) {
-        NSString *value = [dic objectForKey:key];
+        NSString *value = [dic valueForKey:key];
         [values addObject:value];
     }
     return values;
@@ -168,15 +172,10 @@
 {
     _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 200 + 90 *SCALE +120 * SCALE + 45 * SCALE)];
     
-    // 情景一：采用本地图片实现
+    NSArray *imagesUrl = [self getValuesWithCookBookArray:self.loopArray ForKeys:@"img"];
     
-    NSArray *imagesUrl = [self getValuesWithArrayDic:self.loopArray ForKeys:@"img"];
-    
-    _cellArray = [[NSMutableArray alloc]initWithArray:imagesUrl];
-    
-
     // 情景三：图片配文字
-    NSArray *titles = [self getValuesWithArrayDic:self.loopArray ForKeys:@"name"];
+    NSArray *titles = [self getValuesWithCookBookArray:self.loopArray ForKeys:@"name"];
     
     
     // 网络加载 --- 创建带标题的图片轮播器
@@ -216,7 +215,7 @@
     btn.layer.masksToBounds = YES;
     btn.layer.borderColor = rgba(250, 128, 74, 1).CGColor;
     btn.layer.borderWidth = 1;
-   // [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     [_headView addSubview:btn];
     
     UIView *TitleView = [[UIView alloc]initWithFrame:CGRectMake(0, 200 + 45 *SCALE,WIDTH , 45 * SCALE )];
@@ -255,6 +254,12 @@
     
 }
 
+-(void)searchClick:(id)sender
+{
+    SearchViewController *search = [[SearchViewController alloc]init];
+    [self.navigationController pushViewController:search animated:YES];
+}
+
 -(void)btnClick:(id)sender
 {
     CategoryButton *btn = (CategoryButton *)sender;
@@ -273,13 +278,16 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     NSLog(@"---点击了第%ld张图片", (long)index);
+    CookbookModel *model = [self.loopArray objectAtIndex:index];
+    DetailViewController *detailC = [[DetailViewController alloc]initWithCookbookModel:model];
+    [self.navigationController pushViewController:detailC animated:YES];
     
 }
 
 #pragma mark 定义展示的UICollectionViewCell的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_cellArray count];
+    return [self.fineArray count];
 }
 
 #pragma mark 定义展示的Section的个数
@@ -307,8 +315,7 @@
     [cell sizeToFit];
     
     //cell.imgView.image = [UIImage imageNamed:_cellArray[indexPath.item]];
-    [cell.imgView sd_setImageWithURL:_cellArray[indexPath.item]];
-    cell.text.text = [NSString stringWithFormat:@"Cell %ld",indexPath.item];
+    cell.cookModel =self.fineArray[indexPath.item];
     //按钮事件就不实现了……
     return cell;
 }
@@ -316,7 +323,11 @@
 #pragma mark UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"选择%ld",indexPath.item);
+    //NSLog(@"选择%ld",indexPath.item);
+    CookbookModel *model = [self.fineArray objectAtIndex:indexPath.row];
+    DetailViewController *detailC = [[DetailViewController alloc]initWithCookbookModel:model];
+    [self.navigationController pushViewController:detailC animated:YES];
+    
 }
 
 
