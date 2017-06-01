@@ -16,10 +16,15 @@
 #import "CategoryButton.h"
 
 #import "NSArray+Category.h"
+#import "UIImageView+WebCache.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,strong)NSMutableArray *hotArray;
+
+@property(nonatomic,strong)NSMutableArray *loopArray;
+
+@property(nonatomic,strong)NSMutableArray *fineArray;
 
 
 @end
@@ -42,7 +47,6 @@
     if(_hotArray == nil)
     {
         _hotArray = [NSMutableArray array];
-       // NSString *path = [[NSBundle mainBundle] pathForResource:@"category_hot" ofType:@"plist"];
         NSArray *array = [NSArray arrayNamed:@"category_hot"];
         
         for (NSDictionary *dic in array) {
@@ -57,6 +61,60 @@
         
     }
     return _hotArray;
+}
+
+-(NSMutableArray *)loopArray
+{
+    if(_loopArray == nil)
+    {
+        _loopArray = [NSMutableArray array];
+        NSMutableSet *randomSet = [self getRandomSet];
+        
+        for (id obj in randomSet) {
+            [_loopArray addObject:obj];
+        }
+    }
+    
+    return _loopArray;
+}
+
+-(NSMutableArray *)fineArray
+{
+    if(_fineArray == nil)
+    {
+        _fineArray = [NSMutableArray array];
+        NSMutableSet *randomSet = [self getRandomSet];
+        
+        for (id obj in randomSet) {
+            [_fineArray addObject:obj];
+        }
+    }
+    
+    return _fineArray;
+    
+}
+
+-(NSMutableSet *)getRandomSet
+{
+    NSArray *array = [NSArray arrayNamed:@"cookbook"];
+    
+    NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+    while ([randomSet count] < 6) {
+        int r = arc4random() % [array count];
+        [randomSet addObject:[array objectAtIndex:r]];
+    }
+
+    return randomSet;
+}
+
+-(NSMutableArray *)getValuesWithArrayDic:(NSArray *)array ForKeys:(NSString *)key
+{
+    NSMutableArray *values = [NSMutableArray array];
+    for (NSDictionary *dic in array) {
+        NSString *value = [dic objectForKey:key];
+        [values addObject:value];
+    }
+    return values;
 }
 
 - (void)viewDidLoad {
@@ -77,7 +135,7 @@
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     
-    flowLayout.headerReferenceSize = CGSizeMake(WIDTH, 200 + 90 *SCALE + 120 * SCALE);//头部大小
+    flowLayout.headerReferenceSize = CGSizeMake(WIDTH, 200 + (90 + 120 + 45 ) *SCALE );//头部大小
     
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) collectionViewLayout:flowLayout];
     //定义每个UICollectionView 的大小
@@ -108,51 +166,34 @@
 
 -(void)CreateHeader
 {
-    _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 200 + 90 *SCALE +120 * SCALE)];
+    _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 200 + 90 *SCALE +120 * SCALE + 45 * SCALE)];
     
     // 情景一：采用本地图片实现
-    NSArray *imageNames = @[@"h1.jpg",
-                            @"h2.jpg",
-                            @"h3.jpg",
-                            @"h4.jpg"
-                            ];
     
-    _cellArray = [[NSMutableArray alloc]initWithArray:imageNames];
+    NSArray *imagesUrl = [self getValuesWithArrayDic:self.loopArray ForKeys:@"img"];
     
-    // 情景二：采用网络图片实现
-    NSArray *imagesURLStrings = @[
-                                  @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg",
-                                  @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
-                                  @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
-                                  ];
+    _cellArray = [[NSMutableArray alloc]initWithArray:imagesUrl];
     
+
     // 情景三：图片配文字
-    NSArray *titles = @[@"新建交流QQ群：185534916 ",
-                        @"感谢您的支持，如果下载的",
-                        @"如果代码在使用过程中出现问题",
-                        @"您可以发邮件到gsdios@126.com"
-                        ];
+    NSArray *titles = [self getValuesWithArrayDic:self.loopArray ForKeys:@"name"];
     
     
     // 网络加载 --- 创建带标题的图片轮播器
     SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WIDTH, 180) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    cycleScrollView2.localizationImageNamesGroup = imageNames;
+   // cycleScrollView2.localizationImageNamesGroup = imageNames;
     cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     cycleScrollView2.titlesGroup = titles;
-    cycleScrollView2.titleLabelBackgroundColor = [UIColor clearColor];
+    cycleScrollView2.titleLabelBackgroundColor = rgba(10, 10, 10, 0.3);
     cycleScrollView2.titleLabelHeight = 50;
     cycleScrollView2.currentPageDotColor = rgba(250, 128, 74, 1); // 自定义分页控件小圆标颜色
     cycleScrollView2.pageDotColor = [UIColor whiteColor];
     cycleScrollView2.pageControlBottomOffset = 10;
     [_headView addSubview:cycleScrollView2];
+    cycleScrollView2.imageURLStringsGroup = imagesUrl;
     
-    //         --- 模拟加载延迟
-    /*
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-     cycleScrollView2.imageURLStringsGroup = imagesURLStrings;
-     });
-     
-     */
+    
+    
     
     /*
      block监听点击方式
@@ -207,9 +248,14 @@
         [btnView addSubview:btnC];
     }
     
+    UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,200 + 210 * SCALE, 200, 45 * SCALE)];
+    priceLabel.text = @"精品好菜";
+    priceLabel.textColor =rgba(200, 200, 200, 1);
+    [_headView addSubview:priceLabel];
+    
 }
 
--(void)btnClick:(UIButton *)sender
+-(void)btnClick:(id)sender
 {
     CategoryButton *btn = (CategoryButton *)sender;
     if([btn.category.url isEqualToString:@""])
@@ -260,7 +306,8 @@
     HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     [cell sizeToFit];
     
-    cell.imgView.image = [UIImage imageNamed:_cellArray[indexPath.item]];
+    //cell.imgView.image = [UIImage imageNamed:_cellArray[indexPath.item]];
+    [cell.imgView sd_setImageWithURL:_cellArray[indexPath.item]];
     cell.text.text = [NSString stringWithFormat:@"Cell %ld",indexPath.item];
     //按钮事件就不实现了……
     return cell;

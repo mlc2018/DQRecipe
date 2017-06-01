@@ -87,6 +87,8 @@
 		EC28B9E21ED6896800E9A052 /* pageControlDot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC28B9D81ED6896800E9A052 /* pageControlDot@3x.png */; };
 		EC28B9E31ED6896800E9A052 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC28B9D91ED6896800E9A052 /* placeholder@2x.png */; };
 		EC28BA091ED6C88200E9A052 /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28BA081ED6C88200E9A052 /* HomeCollectionViewCell.m */; };
+		EC6A55161EDE6C1A0084D152 /* CookbookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A55151EDE6C1A0084D152 /* CookbookModel.m */; };
+		EC6A55181EDE6F210084D152 /* cookbook.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC6A55171EDE6F210084D152 /* cookbook.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -239,6 +241,9 @@
 		EC28B9D91ED6896800E9A052 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		EC28BA071ED6C88200E9A052 /* HomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewCell.h; sourceTree = "<group>"; };
 		EC28BA081ED6C88200E9A052 /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
+		EC6A55141EDE6C1A0084D152 /* CookbookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookbookModel.h; sourceTree = "<group>"; };
+		EC6A55151EDE6C1A0084D152 /* CookbookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookbookModel.m; sourceTree = "<group>"; };
+		EC6A55171EDE6F210084D152 /* cookbook.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cookbook.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +266,8 @@
 			children = (
 				EC286A211ED96A7D0026D293 /* CategoryModel.h */,
 				EC286A221ED96A7D0026D293 /* CategoryModel.m */,
+				EC6A55141EDE6C1A0084D152 /* CookbookModel.h */,
+				EC6A55151EDE6C1A0084D152 /* CookbookModel.m */,
 			);
 			name = commen;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 				EC28B8801ED02F5E00E9A052 /* main.m */,
 				EC28B8A61ED172F800E9A052 /* PrefixHeader.pch */,
 				EC286A1E1ED960BF0026D293 /* category_hot.plist */,
+				EC6A55171EDE6F210084D152 /* cookbook.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -643,6 +651,7 @@
 				EC28B9E31ED6896800E9A052 /* placeholder@2x.png in Resources */,
 				EC28B9E01ED6896800E9A052 /* pageControlCurrentDot@3x.png in Resources */,
 				EC28B9E21ED6896800E9A052 /* pageControlDot@3x.png in Resources */,
+				EC6A55181EDE6F210084D152 /* cookbook.plist in Resources */,
 				EC28B88F1ED02F5E00E9A052 /* LaunchScreen.storyboard in Resources */,
 				EC286A1F1ED960BF0026D293 /* category_hot.plist in Resources */,
 				EC28B9DE1ED6896800E9A052 /* h4.jpg in Resources */,
@@ -687,6 +696,7 @@
 				EC28B9AD1ED6887600E9A052 /* SDWebImageDownloader.m in Sources */,
 				EC28B8981ED12E8300E9A052 /* MoreViewController.m in Sources */,
 				EC28B9A81ED6887600E9A052 /* NSImage+WebCache.m in Sources */,
+				EC6A55161EDE6C1A0084D152 /* CookbookModel.m in Sources */,
 				EC28B8AC1ED17EA600E9A052 /* CollectionViewCell.m in Sources */,
 				EC28B8D91ED3377D00E9A052 /* SearchViewController.m in Sources */,
 				EC28B9A71ED6887600E9A052 /* NSData+ImageContentType.m in Sources */,
