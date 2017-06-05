@@ -43,7 +43,6 @@
         self.click = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.name.frame) + 5, CGRectGetWidth(self.frame), 10)];
         [self.click setFont:[UIFont systemFontOfSize:10]];
         [self.click setTextColor:[UIColor lightGrayColor]];
-        //self.text.backgroundColor = [UIColor brownColor];
         self.click.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.click];
         
@@ -58,6 +57,5 @@
     NSString *click = [NSString stringWithFormat:@"%@%@  %@%@",model.all_click,@"浏览",model.favorites,@"收藏"];
     self.click.text = click;
 }
-
 
 @end

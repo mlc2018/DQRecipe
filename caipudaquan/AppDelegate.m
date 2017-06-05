@@ -49,6 +49,7 @@
         vc.tabBarItem.image = [UIImage imageNamed:[images objectAtIndex:i]];
         vc.tabBarItem.selectedImage = [[UIImage imageNamed:[selectedImage objectAtIndex:i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:253/255.0 green:108.0/255.0 blue:33/255.0 alpha:1.0]} forState:UIControlStateSelected];
+        
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
         nv.navigationBar.barTintColor =[UIColor colorWithRed:253/255.0 green:108.0/255.0 blue:33/255.0 alpha:1.0];
         [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -64,7 +65,6 @@
     
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

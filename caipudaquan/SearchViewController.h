@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CategoryModel.h"
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UITableViewController
 
 @property(nonatomic,strong)CategoryModel *category;
 

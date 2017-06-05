@@ -91,6 +91,8 @@
 		EC6A55181EDE6F210084D152 /* cookbook.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC6A55171EDE6F210084D152 /* cookbook.plist */; };
 		EC6A55421EDFBB180084D152 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A55411EDFBB180084D152 /* DetailViewController.m */; };
 		EC6A55451EDFECFB0084D152 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A55441EDFECFB0084D152 /* UIBarButtonItem+Extension.m */; };
+		EC6A55511EE152700084D152 /* SearchViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A55501EE152700084D152 /* SearchViewHeader.m */; };
+		EC6A55541EE5410B0084D152 /* SearchSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A55531EE5410B0084D152 /* SearchSectionHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -250,6 +252,10 @@
 		EC6A55411EDFBB180084D152 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		EC6A55431EDFECFB0084D152 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		EC6A55441EDFECFB0084D152 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		EC6A554F1EE152700084D152 /* SearchViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewHeader.h; sourceTree = "<group>"; };
+		EC6A55501EE152700084D152 /* SearchViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewHeader.m; sourceTree = "<group>"; };
+		EC6A55521EE5410B0084D152 /* SearchSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchSectionHeader.h; sourceTree = "<group>"; };
+		EC6A55531EE5410B0084D152 /* SearchSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchSectionHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +324,7 @@
 		EC28B87E1ED02F5E00E9A052 /* caipudaquan */ = {
 			isa = PBXGroup;
 			children = (
+				EC6A554E1EE152390084D152 /* search */,
 				EC6A553F1EDFBAEF0084D152 /* detail */,
 				EC286A241ED976560026D293 /* category */,
 				EC286A201ED96A520026D293 /* commen */,
@@ -330,8 +337,6 @@
 				EC28B8831ED02F5E00E9A052 /* AppDelegate.m */,
 				EC28B8851ED02F5E00E9A052 /* ViewController.h */,
 				EC28B8861ED02F5E00E9A052 /* ViewController.m */,
-				EC28B8D71ED3377D00E9A052 /* SearchViewController.h */,
-				EC28B8D81ED3377D00E9A052 /* SearchViewController.m */,
 				EC28B8881ED02F5E00E9A052 /* Main.storyboard */,
 				EC28B88B1ED02F5E00E9A052 /* Assets.xcassets */,
 				EC28B88D1ED02F5E00E9A052 /* LaunchScreen.storyboard */,
@@ -605,6 +610,19 @@
 			name = detail;
 			sourceTree = "<group>";
 		};
+		EC6A554E1EE152390084D152 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				EC28B8D71ED3377D00E9A052 /* SearchViewController.h */,
+				EC28B8D81ED3377D00E9A052 /* SearchViewController.m */,
+				EC6A554F1EE152700084D152 /* SearchViewHeader.h */,
+				EC6A55501EE152700084D152 /* SearchViewHeader.m */,
+				EC6A55521EE5410B0084D152 /* SearchSectionHeader.h */,
+				EC6A55531EE5410B0084D152 /* SearchSectionHeader.m */,
+			);
+			name = search;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -698,6 +716,7 @@
 				EC286A231ED96A7D0026D293 /* CategoryModel.m in Sources */,
 				EC28B9B61ED6887600E9A052 /* UIView+WebCache.m in Sources */,
 				EC28B8B21ED17FED00E9A052 /* CollectionViewHeaderView.m in Sources */,
+				EC6A55511EE152700084D152 /* SearchViewHeader.m in Sources */,
 				EC28B8871ED02F5E00E9A052 /* ViewController.m in Sources */,
 				EC28B9C91ED6889C00E9A052 /* TAAnimatedDotView.m in Sources */,
 				EC28B9CE1ED6889C00E9A052 /* UIView+SDExtension.m in Sources */,
@@ -727,6 +746,7 @@
 				EC28B9081ED42D2400E9A052 /* AFSecurityPolicy.m in Sources */,
 				EC28B8D41ED2941400E9A052 /* FoodView.m in Sources */,
 				EC28B9CD1ED6889C00E9A052 /* SDCycleScrollView.m in Sources */,
+				EC6A55541EE5410B0084D152 /* SearchSectionHeader.m in Sources */,
 				EC28B9B21ED6887600E9A052 /* UIImage+GIF.m in Sources */,
 				EC28B9241ED42D4D00E9A052 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EC28B9AA1ED6887600E9A052 /* SDImageCacheConfig.m in Sources */,

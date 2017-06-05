@@ -52,11 +52,6 @@
         NSArray *array = [NSArray arrayNamed:@"category_hot"];
         
         for (NSDictionary *dic in array) {
-            /*
-            CategoryModel *model = [[CategoryModel alloc]init];
-            model.name =[dic objectForKey:@"name"];
-            model.appurl =[dic objectForKey:@"appurl"];
-             */
             CategoryModel *model = [CategoryModel CategoryWithDict:dic];
             [_hotArray addObject:model];
         }
@@ -174,7 +169,7 @@
     
     NSArray *imagesUrl = [self getValuesWithCookBookArray:self.loopArray ForKeys:@"img"];
     
-    // 情景三：图片配文字
+    // 图片配文字
     NSArray *titles = [self getValuesWithCookBookArray:self.loopArray ForKeys:@"name"];
     
     
@@ -190,18 +185,6 @@
     cycleScrollView2.pageControlBottomOffset = 10;
     [_headView addSubview:cycleScrollView2];
     cycleScrollView2.imageURLStringsGroup = imagesUrl;
-    
-    
-    
-    
-    /*
-     block监听点击方式
-     
-     cycleScrollView2.clickItemOperationBlock = ^(NSInteger index) {
-     NSLog(@">>>>>  %ld", (long)index);
-     };
-     
-     */
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundColor:rgba(255, 255, 255, 1)];
@@ -277,7 +260,7 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    NSLog(@"---点击了第%ld张图片", (long)index);
+    //NSLog(@"---点击了第%ld张图片", (long)index);
     CookbookModel *model = [self.loopArray objectAtIndex:index];
     DetailViewController *detailC = [[DetailViewController alloc]initWithCookbookModel:model];
     [self.navigationController pushViewController:detailC animated:YES];
@@ -302,7 +285,7 @@
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                             UICollectionElementKindSectionHeader withReuseIdentifier:@"ReusableView" forIndexPath:indexPath];
     
-    [headerView addSubview:_headView];//头部广告栏
+    [headerView addSubview:_headView];
     return headerView;
 }
 
@@ -314,9 +297,8 @@
     HomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     [cell sizeToFit];
     
-    //cell.imgView.image = [UIImage imageNamed:_cellArray[indexPath.item]];
     cell.cookModel =self.fineArray[indexPath.item];
-    //按钮事件就不实现了……
+    
     return cell;
 }
 
@@ -330,21 +312,9 @@
     
 }
 
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

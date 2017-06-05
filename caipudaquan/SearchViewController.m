@@ -9,9 +9,16 @@
 #import "SearchViewController.h"
 #import "UIBarButtonItem+Extension.h"
 
+#import "SearchViewHeader.h"
+#import "SearchSectionHeader.h"
+
 @interface SearchViewController ()
 
 @property(nonatomic,strong)UITextField *textField;
+
+@property(nonatomic,strong) NSArray *hotSearchWords;
+
+@property(nonatomic,strong) NSArray *historySearch;
 
 @end
 
@@ -25,6 +32,23 @@
     }
     
     return self;
+}
+
+-(NSArray *)hotSearchWords{
+    if(!_hotSearchWords){
+        
+        _hotSearchWords = @[@"冰糖雪梨",@"煎饼",@"鸡蛋饼",@"鸡翅",@"茄子",@"辣子鸡",@"四季豆",@"粤菜",@"面条",@"水煮肉片"];
+    }
+    
+    return _hotSearchWords;
+}
+
+-(NSArray *)historySearch
+{
+    if(!_historySearch){
+        _historySearch = @[@"冰糖雪梨",@"煎饼",@"鸡蛋饼",@"鸡翅",@"茄子",@"辣子鸡",@"四季豆",@"粤菜",@"面条",@"水煮肉片"];
+    }
+    return _historySearch;
 }
 
 
@@ -53,6 +77,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.tabBarController.tabBar.hidden = YES;
     [self addBackItem];
+    
+    self.view.backgroundColor =rgba(238, 238, 238, 1);
+    
+    [self setupHeader];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)addBackItem {
@@ -113,6 +142,70 @@
 -(void)popNav
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Table view data source
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.historySearch count];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(self.category != nil)
+    {
+        return 0;
+    }
+    return 44;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section == 0)
+    {
+        SearchSectionHeader *header = [[SearchSectionHeader alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 44)];
+         return header;
+    }
+
+   
+    return nil;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellName = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+    
+    if(!cell){
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 1)];
+    line.backgroundColor = rgba(238, 238, 238, 1);
+    [cell.contentView addSubview:line];
+    cell.textLabel.text = [self.historySearch objectAtIndex:indexPath.row];
+    return cell;
+}
+
+-(void)setupHeader
+{
+    if(self.category != nil)
+    {
+      self.tableView.tableHeaderView = nil;
+        
+    }else
+    {
+        SearchViewHeader *header = [[SearchViewHeader alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 111)];
+        header.keywords = self.hotSearchWords;
+        self.tableView.tableHeaderView = header;
+    }
+    
+    // self.tableView.tableHeaderView = nil;
 }
 
 
