@@ -7,10 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
-#import "HomeViewController.h"
-#import "ClassifyViewController.h"
-#import "MoreViewController.h"
+#import "CPTabBarController.h"
+
 #import "AFAppDotNetAPIClient.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 
@@ -24,44 +22,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
-    UITabBarController *tb = [[UITabBarController alloc]init];
-    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    CPTabBarController *tb = [[CPTabBarController alloc]init];
     self.window.rootViewController = tb;
-    
-    
-    HomeViewController *home = [[HomeViewController alloc]init];
-    ClassifyViewController *class = [[ClassifyViewController alloc]init];
-    MoreViewController *more = [[MoreViewController alloc]init];
-    
-    NSArray *controllers =[NSArray arrayWithObjects:home,class,more,nil];
-    NSArray *images = [NSArray arrayWithObjects:@"home_Recipe",@"home_classify",@"home_more" ,nil];
-    NSArray *selectedImage =[NSArray arrayWithObjects:@"home_Recipe_selected",@"home_classify_selected",@"home_more_selected" ,nil];
-    NSArray *titleArray = [NSArray arrayWithObjects:@"菜谱大全",@"菜谱分类", @"更多",nil];
-    
-    NSMutableArray *tabArray = [NSMutableArray array];
-
-    for(int i=0;i<3;i++)
-    {
-        UIViewController *vc = [controllers objectAtIndex:i];
-                
-        vc.tabBarItem.title = [titleArray objectAtIndex:i];
-        vc.tabBarItem.image = [UIImage imageNamed:[images objectAtIndex:i]];
-        vc.tabBarItem.selectedImage = [[UIImage imageNamed:[selectedImage objectAtIndex:i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:253/255.0 green:108.0/255.0 blue:33/255.0 alpha:1.0]} forState:UIControlStateSelected];
-        
-        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
-        nv.navigationBar.barTintColor =[UIColor colorWithRed:253/255.0 green:108.0/255.0 blue:33/255.0 alpha:1.0];
-        [nv.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-        [tabArray addObject:nv];
-        
-        
-    }
-    
-    
-    tb.viewControllers = tabArray;
-    
-   // [self selfLogin];
+    [self.window makeKeyAndVisible];
+    // [self selfLogin];
     
     return YES;
 }

@@ -37,13 +37,6 @@
     UIView *_headView;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
-}
-
-
 -(NSMutableArray *)hotArray
 {
     if(_hotArray == nil)
@@ -136,7 +129,7 @@
     
     flowLayout.headerReferenceSize = CGSizeMake(WIDTH, 200 + (90 + 120 + 45 ) *SCALE );//头部大小
     
-    UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) collectionViewLayout:flowLayout];
+    UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT) collectionViewLayout:flowLayout];
     //定义每个UICollectionView 的大小
     flowLayout.itemSize = CGSizeMake((WIDTH-20)/2, (WIDTH-20)/2+50);
     //定义每个UICollectionView 横向的间距

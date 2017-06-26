@@ -11,6 +11,10 @@
 
 #import "SearchViewHeader.h"
 #import "SearchSectionHeader.h"
+#import "SearchResultCell.h"
+
+
+#import "MJRefresh.h"
 
 @interface SearchViewController ()
 
@@ -20,9 +24,16 @@
 
 @property(nonatomic,strong) NSArray *historySearch;
 
+@property(nonatomic,assign) NSInteger page;
+
+@property(nonatomic,strong) NSMutableArray *resultArray;
+
 @end
 
 @implementation SearchViewController
+
+static NSString *const searchCellIdentifier = @"search";
+static NSString *const resultCellIdentifier = @"result";
 
 -(instancetype)initWithCategoryModel:(CategoryModel *)model
 {
@@ -43,18 +54,19 @@
     return _hotSearchWords;
 }
 
+-(NSMutableArray *)resultArray{
+    if(!_resultArray){
+        _resultArray = [NSMutableArray array];
+    }
+    return _resultArray;
+}
+
 -(NSArray *)historySearch
 {
     if(!_historySearch){
         _historySearch = @[@"冰糖雪梨",@"煎饼",@"鸡蛋饼",@"鸡翅",@"茄子",@"辣子鸡",@"四季豆",@"粤菜",@"面条",@"水煮肉片"];
     }
     return _historySearch;
-}
-
-
--(void)viewWillAppear:(BOOL)animated
-{
-    
 }
 
 
@@ -74,31 +86,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.tabBarController.tabBar.hidden = YES;
     [self addBackItem];
-    
     self.view.backgroundColor =rgba(238, 238, 238, 1);
-    
     [self setupHeader];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:resultCellIdentifier];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:searchCellIdentifier];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.page = 0;
+    
+    if(self.category != nil)
+    {
+        [self doSearch:self.category.url];
+        self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            
+            [self updateDate];
+            
+        }];
+
+    }
+    
 }
 
 - (void)addBackItem {
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:@"搜索" titleColor:[UIColor whiteColor] target:self action:@selector(searchClick:)];
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonLeftItemWithImageName:@"nav_back_button" target:self action:@selector(popNav)];
-    
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:@"搜索" titleColor:[UIColor whiteColor] target:self action:@selector(popNav)];
-    
-    /*
-    UIButton *search= [UIButton buttonWithType:UIButtonTypeCustom];
-    search.frame = CGRectMake(0, 0, 40, 15);
-    [search addTarget:self action:@selector(popNav) forControlEvents:UIControlEventTouchUpInside];
-    [search setTitle:@"搜索" forState:UIControlStateNormal];
-    
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc]initWithCustomView:search];
-    self.navigationItem.rightBarButtonItem = item2;
-     */
     
     UIView* view1 = [[UIView alloc]initWithFrame:CGRectMake(55*SCALE, 25, WIDTH - 130*SCALE, 34)];
     view1.tag = 102;
@@ -116,6 +132,57 @@
     
     [self.navigationController.view addSubview:view1];
     
+
+}
+
+-(void)searchClick:(id)sender
+{
+    [self doSearch:@"123"];
+}
+
+-(void)doSearch:(NSString *)urlString
+{
+    /*
+    NSURL *url = [NSURL URLWithString:urlString];
+     网络请求数据
+     */
+    self.page = 0;
+    [self.resultArray removeAllObjects];
+    [self updateDate];
+    
+}
+
+
+
+-(void)updateDate
+{
+    if(self.page >= 3)
+    {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"searchlist" ofType:@"txt"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    NSArray *dataSource = dict[@"data"];
+    for(NSInteger i=self.page*10;i<10*(self.page+1);i++)
+    {
+        CookbookModel *model = [[CookbookModel alloc]init];
+        model.appurl = [dataSource[i] objectForKey:@"uri"];
+        model.img = [dataSource[i] objectForKey:@"img"];
+        model.all_click = [dataSource[i] objectForKey:@"all_click"];
+        model.favorites = [dataSource[i] objectForKey:@"favorites"];
+        model.burdens = [dataSource[i] objectForKey:@"burdens"];
+        model.name = [dataSource[i] objectForKey:@"name"];
+        [self.resultArray addObject:model];
+        
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView reloadData];
+        self.page++;
+    });
 
 }
 
@@ -152,20 +219,45 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.historySearch count];
+    if([self.resultArray count])
+    {
+        return [self.resultArray count];
+    }else
+    {
+        if(self.category != nil)
+        {
+            return 1;
+        }
+        
+        return [self.historySearch count];
+    }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(self.category != nil)
+    if(self.category != nil || [self.resultArray count] > 0)
     {
         return 0;
+    }else
+    {
+        return 44;
     }
-    return 44;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.resultArray count])
+    {
+        return 120;
+    }else
+    {
+        return 44;
+    }
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(section == 0)
+    if(section == 0 && self.category == nil)
     {
         SearchSectionHeader *header = [[SearchSectionHeader alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 44)];
          return header;
@@ -177,30 +269,76 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellName = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+    //UITableViewCell *cell;
     
-    if(!cell){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if([self.resultArray count])
+    {
+        //有搜索内容
+        SearchResultCell *cell = [SearchResultCell cellWithTableView:tableView];
+        cell.cookModel = [self.resultArray objectAtIndex:indexPath.row];
+        return cell;
+        
+    }else
+    {
+        if(self.category != nil)
+        {
+            UITableViewCell *cell;
+            cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 1)];
+            line.backgroundColor = rgba(238, 238, 238, 1);
+            [cell.contentView addSubview:line];
+            cell.textLabel.text = @"aaa";
+            
+            return cell;
+            
+            
+        }else
+        {
+            UITableViewCell *cell;
+           
+            cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            /*
+            if(!cell){
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+             */
+            
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 1)];
+            line.backgroundColor = rgba(238, 238, 238, 1);
+            [cell.contentView addSubview:line];
+            cell.textLabel.text = [self.historySearch objectAtIndex:indexPath.row];
+            
+            return cell;
+        }
+        
     }
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 1)];
-    line.backgroundColor = rgba(238, 238, 238, 1);
-    [cell.contentView addSubview:line];
-    cell.textLabel.text = [self.historySearch objectAtIndex:indexPath.row];
-    return cell;
+    
+    
+}
+
+- (SearchViewHeader *)extracted {
+    SearchViewHeader *header = [[SearchViewHeader alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 111)];
+    return header;
 }
 
 -(void)setupHeader
 {
+    
+    
     if(self.category != nil)
     {
       self.tableView.tableHeaderView = nil;
         
     }else
     {
-        SearchViewHeader *header = [[SearchViewHeader alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 111)];
+        SearchViewHeader * header = [self extracted];
         header.keywords = self.hotSearchWords;
         self.tableView.tableHeaderView = header;
     }
@@ -213,15 +351,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

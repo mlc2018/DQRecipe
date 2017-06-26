@@ -29,14 +29,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tabBarController.tabBar.hidden = YES;
+    
     self.title = self.cookbook.name;
     [self addBackItem];
 }
 
 - (void)addBackItem {
-    
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonLeftItemWithImageName:@"nav_back_button" target:self action:@selector(popNav)];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonRightItemWithImageName:@"share" target:self  action:@selector(popNav)];
 }

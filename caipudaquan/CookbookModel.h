@@ -14,6 +14,7 @@
 @property(nonatomic,strong) NSString *all_click;
 @property(nonatomic,strong) NSString *favorites;
 @property(nonatomic,strong) NSString *img;
+@property(nonatomic,strong) NSString *burdens;
 @property(nonatomic,assign) BOOL *isStore;
 
 +(instancetype)CookbookWithDict:(NSDictionary *)dict;

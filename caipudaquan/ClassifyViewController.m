@@ -27,7 +27,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
@@ -36,7 +35,7 @@
     
     self.navigationItem.titleView = self.segment;
     
-    UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT )];
+    UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT )];
     scroll.contentSize = CGSizeMake(WIDTH * 2, HEIGHT - 44 - 20 - 49);
     scroll.bounces = NO;
     //scroll.scrollEnabled = NO;
