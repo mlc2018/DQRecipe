@@ -30,6 +30,10 @@
 -(void)setCookModel:(CookbookModel *)cookModel
 {
     self.nameLabel.text = cookModel.name;
+    self.materialLabel.text = cookModel.burdens;
+    NSString *countText = [NSString stringWithFormat:@"%@浏览  %@收藏",cookModel.all_click,cookModel.favorites];
+    self.countLabel.text = countText;
+    
     [self.iconImage sd_setImageWithURL:[NSURL URLWithString:cookModel.img]];
     
 }

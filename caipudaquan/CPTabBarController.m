@@ -12,6 +12,7 @@
 #import "MoreViewController.h"
 
 #import "CPNavigationController.h"
+#import "CPTabBar.h"
 
 @interface CPTabBarController ()
 
@@ -31,6 +32,9 @@
     
     MoreViewController *more = [[MoreViewController alloc]init];
     [self addChildController:more title:@"更多" image:@"home_more" selectedImage:@"home_more_selected"];
+    
+    CPTabBar *tabBar = [[CPTabBar alloc]init];
+    [self setValue:tabBar forKey:@"tabBar"];
     
 }
 

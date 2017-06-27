@@ -29,26 +29,18 @@
 
 @property(nonatomic,strong)NSMutableArray *fineArray;
 
+@property(nonatomic,strong) UIView *headView;
+
 
 @end
 
 @implementation HomeViewController
-{
-    UIView *_headView;
-}
 
 -(NSMutableArray *)hotArray
 {
     if(_hotArray == nil)
     {
         _hotArray = [NSMutableArray array];
-        NSArray *array = [NSArray arrayNamed:@"category_hot"];
-        
-        for (NSDictionary *dic in array) {
-            CategoryModel *model = [CategoryModel CategoryWithDict:dic];
-            [_hotArray addObject:model];
-        }
-        
     }
     return _hotArray;
 }
@@ -58,14 +50,7 @@
     if(_loopArray == nil)
     {
         _loopArray = [NSMutableArray array];
-        NSMutableSet *randomSet = [self getRandomSet];
-        
-        for (id obj in randomSet) {
-            CookbookModel *model = [CookbookModel CookbookWithDict:obj];
-            [_loopArray addObject:model];
-        }
     }
-    
     return _loopArray;
 }
 
@@ -74,17 +59,104 @@
     if(_fineArray == nil)
     {
         _fineArray = [NSMutableArray array];
-        NSMutableSet *randomSet = [self getRandomSet];
-        
-        for (id obj in randomSet) {
-            CookbookModel *model = [CookbookModel CookbookWithDict:obj];
-            [_fineArray addObject:model];
-        }
     }
     
     return _fineArray;
+}
+
+
+-(UIView *)headView
+{
+    if(!_headView)
+    {
+        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 455)];
+        
+        NSArray *imagesUrl = [self getValuesWithCookBookArray:self.loopArray ForKeys:@"img"];
+        
+        // 图片配文字
+        NSArray *titles = [self getValuesWithCookBookArray:self.loopArray ForKeys:@"name"];
+        
+        
+        // 网络加载 --- 创建带标题的图片轮播器
+        SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WIDTH, 180) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        // cycleScrollView2.localizationImageNamesGroup = imageNames;
+        cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+        cycleScrollView2.titlesGroup = titles;
+        cycleScrollView2.titleLabelBackgroundColor = rgba(10, 10, 10, 0.3);
+        cycleScrollView2.titleLabelHeight = 50;
+        cycleScrollView2.currentPageDotColor = rgba(250, 128, 74, 1); // 自定义分页控件小圆标颜色
+        cycleScrollView2.pageDotColor = [UIColor whiteColor];
+        cycleScrollView2.pageControlBottomOffset = 10;
+        [_headView addSubview:cycleScrollView2];
+        cycleScrollView2.imageURLStringsGroup = imagesUrl;
+        
+        //搜索按钮
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundColor:rgba(255, 255, 255, 1)];
+        [btn setFrame:CGRectMake(15,190, WIDTH - 30, 45)];
+        [btn setTitle:@"想吃什么搜这里，如川菜" forState:UIControlStateNormal];
+        [btn setTitleColor:rgba(200, 200, 200, 1) forState:UIControlStateNormal];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [btn setImage:[UIImage imageNamed:@"showSearch"] forState:UIControlStateNormal];
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        btn.layer.cornerRadius = 5;
+        btn.layer.masksToBounds = YES;
+        btn.layer.borderColor = rgba(250, 128, 74, 1).CGColor;
+        btn.layer.borderWidth = 1;
+        [btn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_headView addSubview:btn];
+        
+        UIView *TitleView = [[UIView alloc]initWithFrame:CGRectMake(0, 200 + 45 ,WIDTH , 45)];
+        TitleView.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 200, 25)];
+        titleLabel.text = @"热门分类";
+        titleLabel.textColor =rgba(200, 200, 200, 1);
+        [TitleView addSubview:titleLabel];
+        [_headView addSubview:TitleView];
+        
+        UIView *btnView = [[UIView alloc]initWithFrame:CGRectMake(0, 200 + 90, WIDTH, 120)];
+        [_headView addSubview:btnView];
+        
+        CGFloat xHeight = (120- 3)/3;
+        CGFloat xWidth = (WIDTH - 3) / 4;
+        
+        for(int i = 0; i < [self.hotArray count];i++)
+        {
+            CategoryButton *btnC = [CategoryButton buttonWithType:UIButtonTypeCustom];
+            [btnC setBackgroundColor:[UIColor whiteColor]];
+            [btnC setFrame:CGRectMake((xWidth + 1)*(i%4),1 + (xHeight + 1) *(i/4), xWidth, xHeight)];
+            [btnC setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            CategoryModel *model = [_hotArray objectAtIndex:i];
+            btnC.category = model;
+            [btnC setTitle:model.name forState:UIControlStateNormal];
+            [btnC addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [btnView addSubview:btnC];
+        }
+        
+        UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,200 + 210 , 200, 45 )];
+        priceLabel.text = @"精品好菜";
+        priceLabel.textColor =rgba(200, 200, 200, 1);
+        [_headView addSubview:priceLabel];
+    }
+    
+    return _headView;
     
 }
+
+
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.navigationItem.title = @"菜谱大全";
+    self.view.backgroundColor =rgba(238, 238, 238, 1);
+    [self initData];
+    [self CreateView];
+    
+}
+
 
 -(NSMutableSet *)getRandomSet
 {
@@ -95,7 +167,7 @@
         int r = arc4random() % [array count];
         [randomSet addObject:[array objectAtIndex:r]];
     }
-
+    
     return randomSet;
 }
 
@@ -109,27 +181,43 @@
     return values;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.navigationItem.title = @"菜谱大全";
-    self.view.backgroundColor =rgba(238, 238, 238, 1);
-    
-    [self CreateHeader];
-    
-    [self CreateView];
-    
-    
+
+-(void)initData
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        
+        NSArray *array = [NSArray arrayNamed:@"category_hot"];
+        for (NSDictionary *dic in array) {
+            CategoryModel *model = [CategoryModel CategoryWithDict:dic];
+            [self.hotArray addObject:model];
+        }
+        
+        NSMutableSet *randomSet = [self getRandomSet];
+        for (id obj in randomSet) {
+            CookbookModel *model = [CookbookModel CookbookWithDict:obj];
+            [self.loopArray addObject:model];
+        }
+        
+        randomSet = [self getRandomSet];
+        
+        for (id obj in randomSet) {
+            CookbookModel *model = [CookbookModel CookbookWithDict:obj];
+            [self.fineArray addObject:model];
+        }
+        
+    });
 }
+
 
 -(void)CreateView
 {
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     
-    flowLayout.headerReferenceSize = CGSizeMake(WIDTH, 200 + (90 + 120 + 45 ) *SCALE );//头部大小
+   // flowLayout.headerReferenceSize = CGSizeMake(WIDTH, 200 + (90 + 120 + 45 ) *SCALE );//头部大小
     
-    UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT) collectionViewLayout:flowLayout];
+    UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT - 64 - 44) collectionViewLayout:flowLayout];
     //定义每个UICollectionView 的大小
     flowLayout.itemSize = CGSizeMake((WIDTH-20)/2, (WIDTH-20)/2+50);
     //定义每个UICollectionView 横向的间距
@@ -156,80 +244,6 @@
     [self.view addSubview:collection];
 }
 
--(void)CreateHeader
-{
-    _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 200 + 90 *SCALE +120 * SCALE + 45 * SCALE)];
-    
-    NSArray *imagesUrl = [self getValuesWithCookBookArray:self.loopArray ForKeys:@"img"];
-    
-    // 图片配文字
-    NSArray *titles = [self getValuesWithCookBookArray:self.loopArray ForKeys:@"name"];
-    
-    
-    // 网络加载 --- 创建带标题的图片轮播器
-    SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WIDTH, 180) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-   // cycleScrollView2.localizationImageNamesGroup = imageNames;
-    cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
-    cycleScrollView2.titlesGroup = titles;
-    cycleScrollView2.titleLabelBackgroundColor = rgba(10, 10, 10, 0.3);
-    cycleScrollView2.titleLabelHeight = 50;
-    cycleScrollView2.currentPageDotColor = rgba(250, 128, 74, 1); // 自定义分页控件小圆标颜色
-    cycleScrollView2.pageDotColor = [UIColor whiteColor];
-    cycleScrollView2.pageControlBottomOffset = 10;
-    [_headView addSubview:cycleScrollView2];
-    cycleScrollView2.imageURLStringsGroup = imagesUrl;
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setBackgroundColor:rgba(255, 255, 255, 1)];
-    [btn setFrame:CGRectMake(15*SCALE,190, WIDTH - 30*SCALE, 45*SCALE)];
-    [btn setTitle:@"想吃什么搜这里，如川菜" forState:UIControlStateNormal];
-    [btn setTitleColor:rgba(200, 200, 200, 1) forState:UIControlStateNormal];
-    [btn.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [btn setImage:[UIImage imageNamed:@"showSearch"] forState:UIControlStateNormal];
-    btn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    btn.layer.cornerRadius = 5;
-    btn.layer.masksToBounds = YES;
-    btn.layer.borderColor = rgba(250, 128, 74, 1).CGColor;
-    btn.layer.borderWidth = 1;
-    [btn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_headView addSubview:btn];
-    
-    UIView *TitleView = [[UIView alloc]initWithFrame:CGRectMake(0, 200 + 45 *SCALE,WIDTH , 45 * SCALE )];
-    TitleView.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10 * SCALE, 200, 25 * SCALE)];
-    titleLabel.text = @"热门分类";
-    titleLabel.textColor =rgba(200, 200, 200, 1);
-    [TitleView addSubview:titleLabel];
-    
-    [_headView addSubview:TitleView];
-    
-    UIView *btnView = [[UIView alloc]initWithFrame:CGRectMake(0, 200 + 90 * SCALE, WIDTH, 120 * SCALE)];
-    [_headView addSubview:btnView];
-    
-    CGFloat xHeight = (120 * SCALE - 3)/3;
-    CGFloat xWidth = (WIDTH - 3) / 4;
-    
-    for(int i = 0; i < [self.hotArray count];i++)
-    {
-        CategoryButton *btnC = [CategoryButton buttonWithType:UIButtonTypeCustom];
-        [btnC setBackgroundColor:[UIColor whiteColor]];
-        [btnC setFrame:CGRectMake((xWidth + 1)*(i%4),1 + (xHeight + 1) *(i/4), xWidth, xHeight)];
-        [btnC setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        CategoryModel *model = [_hotArray objectAtIndex:i];
-        btnC.category = model;
-        [btnC setTitle:model.name forState:UIControlStateNormal];
-        [btnC addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [btnView addSubview:btnC];
-    }
-    
-    UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,200 + 210 * SCALE, 200, 45 * SCALE)];
-    priceLabel.text = @"精品好菜";
-    priceLabel.textColor =rgba(200, 200, 200, 1);
-    [_headView addSubview:priceLabel];
-    
-}
-
 -(void)searchClick:(id)sender
 {
     SearchViewController *search = [[SearchViewController alloc]init];
@@ -245,7 +259,7 @@
         return;
     }
     
-    SearchViewController *search = [[SearchViewController alloc]initWithCategoryModel:btn.category];
+    SearchViewController *search = [[SearchViewController alloc]initWithKeyword:btn.category.name];
     [self.navigationController pushViewController:search animated:YES];
 }
 
@@ -258,6 +272,14 @@
     DetailViewController *detailC = [[DetailViewController alloc]initWithCookbookModel:model];
     [self.navigationController pushViewController:detailC animated:YES];
     
+}
+
+#pragma mark --CollectionView delegate/datasource
+
+#pragma mark 定义展示的UICollectionView header的高度
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(WIDTH,455);
 }
 
 #pragma mark 定义展示的UICollectionViewCell的个数
@@ -278,7 +300,7 @@
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                             UICollectionElementKindSectionHeader withReuseIdentifier:@"ReusableView" forIndexPath:indexPath];
     
-    [headerView addSubview:_headView];
+    [headerView addSubview:self.headView];
     return headerView;
 }
 

@@ -36,7 +36,7 @@
     self.navigationItem.titleView = self.segment;
     
     UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT )];
-    scroll.contentSize = CGSizeMake(WIDTH * 2, HEIGHT - 44 - 20 - 49);
+    scroll.contentSize = CGSizeMake(WIDTH * 2,0);
     scroll.bounces = NO;
     //scroll.scrollEnabled = NO;
     scroll.pagingEnabled = YES;
@@ -56,14 +56,13 @@
     [_segment setPressedHandler:^(NSUInteger index) {
         if(index == 0)
         {
-            [scroll setContentOffset:CGPointMake(0.0, -44.0-20.0) animated:YES];
+            [scroll setContentOffset:CGPointMake(0.0, 0) animated:YES];
         }else
         {
-            [scroll setContentOffset:CGPointMake(WIDTH, -44.0-20.0) animated:YES];
+            [scroll setContentOffset:CGPointMake(WIDTH, 0) animated:YES];
         }
     
     }];
-    
     
 }
 
@@ -92,7 +91,7 @@
 -(void)CollectionCellSelected:(CategoryModel *)model
 {
 
-    SearchViewController *search = [[SearchViewController alloc]initWithCategoryModel:model];
+    SearchViewController *search = [[SearchViewController alloc]initWithKeyword:model.name];
     [self.navigationController pushViewController:search animated:YES];
 }
 

@@ -35,11 +35,11 @@
 static NSString *const searchCellIdentifier = @"search";
 static NSString *const resultCellIdentifier = @"result";
 
--(instancetype)initWithCategoryModel:(CategoryModel *)model
+-(instancetype)initWithKeyword:(NSString *)word
 {
     if(self = [super init])
     {
-        self.category = model;
+        self.keyWord = word;
     }
     
     return self;
@@ -99,9 +99,9 @@ static NSString *const resultCellIdentifier = @"result";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.page = 0;
     
-    if(self.category != nil)
+    if(self.keyWord != nil)
     {
-        [self doSearch:self.category.url];
+        [self doSearch:self.keyWord];
         self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             
             [self updateDate];
@@ -137,7 +137,15 @@ static NSString *const resultCellIdentifier = @"result";
 
 -(void)searchClick:(id)sender
 {
-    [self doSearch:@"123"];
+    if(self.textField.text.length > 0)
+    {
+        self.keyWord = self.textField.text;
+        [self doSearch:self.keyWord];
+    }else
+    {
+        return;
+    }
+    
 }
 
 -(void)doSearch:(NSString *)urlString
@@ -149,7 +157,6 @@ static NSString *const resultCellIdentifier = @"result";
     self.page = 0;
     [self.resultArray removeAllObjects];
     [self updateDate];
-    
 }
 
 
@@ -181,6 +188,7 @@ static NSString *const resultCellIdentifier = @"result";
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.tableView.mj_footer endRefreshing];
         [self.tableView reloadData];
+        [self setupHeader];
         self.page++;
     });
 
@@ -197,9 +205,9 @@ static NSString *const resultCellIdentifier = @"result";
         _textField.keyboardType = UIKeyboardTypeDefault;
         _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
        // _textField.delegate = self;
-        if(self.category)
+        if(self.keyWord)
         {
-            _textField.text = self.category.name; 
+            _textField.text = self.keyWord;
         }
     }
     return _textField;
@@ -224,7 +232,7 @@ static NSString *const resultCellIdentifier = @"result";
         return [self.resultArray count];
     }else
     {
-        if(self.category != nil)
+        if(self.keyWord != nil && self.keyWord.length > 0)
         {
             return 1;
         }
@@ -236,7 +244,16 @@ static NSString *const resultCellIdentifier = @"result";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(self.category != nil || [self.resultArray count] > 0)
+    /*
+    if(self.keyWord != nil || [self.resultArray count] > 0)
+    {
+        return 0;
+    }else
+    {
+        return 44;
+    }
+     */
+    if(self.keyWord.length > 0)
     {
         return 0;
     }else
@@ -257,14 +274,15 @@ static NSString *const resultCellIdentifier = @"result";
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(section == 0 && self.category == nil)
+    if(section == 0 && self.keyWord.length > 0)
+    {
+        return nil;
+    }else
     {
         SearchSectionHeader *header = [[SearchSectionHeader alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 44)];
          return header;
     }
 
-   
-    return nil;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -280,7 +298,7 @@ static NSString *const resultCellIdentifier = @"result";
         
     }else
     {
-        if(self.category != nil)
+        if(self.keyWord != nil)
         {
             UITableViewCell *cell;
             cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
@@ -331,8 +349,7 @@ static NSString *const resultCellIdentifier = @"result";
 -(void)setupHeader
 {
     
-    
-    if(self.category != nil)
+    if(self.keyWord.length > 0)
     {
       self.tableView.tableHeaderView = nil;
         

@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+
+#define kBannerViewHeight SCALE * 200
+
+#define kSearchButtonHeight 30
+
+#define kSearchButtonMargin_tb 12
+
+#define kCategoryViewHeight 120 * SCALE
+
+
+
 @interface HomeHeaderView : UIView
 
 @end

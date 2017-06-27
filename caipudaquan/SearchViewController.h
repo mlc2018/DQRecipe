@@ -11,8 +11,8 @@
 
 @interface SearchViewController : UITableViewController
 
-@property(nonatomic,strong)CategoryModel *category;
+@property(nonatomic,strong)NSString *keyWord;
 
--(instancetype)initWithCategoryModel:(CategoryModel *)model;
+-(instancetype)initWithKeyword:(NSString *)word;
 
 @end
