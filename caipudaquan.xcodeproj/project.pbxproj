@@ -73,6 +73,7 @@
 		EC2DA5EE1F00E26D0060F043 /* CPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2DA5ED1F00E26D0060F043 /* CPNavigationController.m */; };
 		EC2DA5F21F00F9090060F043 /* HomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2DA5F11F00F9090060F043 /* HomeHeaderView.m */; };
 		EC2DA6221F024EAA0060F043 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2DA6211F024EAA0060F043 /* CPTabBar.m */; };
+		EC60B2281F3300A900DF7C4D /* cookstep.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC60B2271F3300A900DF7C4D /* cookstep.plist */; };
 		EC6A55161EDE6C1A0084D152 /* CookbookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A55151EDE6C1A0084D152 /* CookbookModel.m */; };
 		EC6A55181EDE6F210084D152 /* cookbook.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC6A55171EDE6F210084D152 /* cookbook.plist */; };
 		EC6A55421EDFBB180084D152 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6A55411EDFBB180084D152 /* DetailViewController.m */; };
@@ -212,6 +213,7 @@
 		EC2DA5F11F00F9090060F043 /* HomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeaderView.m; sourceTree = "<group>"; };
 		EC2DA6201F024EAA0060F043 /* CPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBar.h; sourceTree = "<group>"; };
 		EC2DA6211F024EAA0060F043 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
+		EC60B2271F3300A900DF7C4D /* cookstep.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = cookstep.plist; sourceTree = "<group>"; };
 		EC6A55141EDE6C1A0084D152 /* CookbookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookbookModel.h; sourceTree = "<group>"; };
 		EC6A55151EDE6C1A0084D152 /* CookbookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookbookModel.m; sourceTree = "<group>"; };
 		EC6A55171EDE6F210084D152 /* cookbook.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cookbook.plist; sourceTree = "<group>"; };
@@ -264,6 +266,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EC0D82EB1FCAF6C400D1D9F4 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				EC0D82EC1FCAF6F000D1D9F4 /* AFN */,
+				EC28B9B81ED6889C00E9A052 /* SDCycleScrollView */,
+				ECD4170B1F050853007F2D50 /* JHUD */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		EC0D82EC1FCAF6F000D1D9F4 /* AFN */ = {
+			isa = PBXGroup;
+			children = (
+				EC28B92A1ED42D5800E9A052 /* AFAppDotNetAPIClient.h */,
+				EC28B92B1ED42D5800E9A052 /* AFAppDotNetAPIClient.m */,
+				EC28B90C1ED42D3300E9A052 /* UIKit+AFNetworking */,
+				EC28B8F81ED42D0D00E9A052 /* AFNetworking */,
+			);
+			path = AFN;
+			sourceTree = "<group>";
+		};
 		EC28B8731ED02F5E00E9A052 = {
 			isa = PBXGroup;
 			children = (
@@ -285,15 +308,13 @@
 		EC28B87E1ED02F5E00E9A052 /* caipudaquan */ = {
 			isa = PBXGroup;
 			children = (
+				EC0D82EB1FCAF6C400D1D9F4 /* libs */,
 				EC60B21C1F32F5D600DF7C4D /* Data */,
 				EC60B21B1F32F5B200DF7C4D /* Module */,
 				EC60B21A1F32F56A00DF7C4D /* Images */,
 				EC60B2191F32F53900DF7C4D /* Common */,
 				EC60B2181F32F51F00DF7C4D /* Category */,
-				EC60B2171F32F50B00DF7C4D /* Detail */,
-				EC60B2161F32F4EE00DF7C4D /* Search */,
 				EC60B2151F32F48100DF7C4D /* Base */,
-				EC28B8DB1ED426CD00E9A052 /* libs */,
 				EC28B88B1ED02F5E00E9A052 /* Assets.xcassets */,
 				EC28B88D1ED02F5E00E9A052 /* LaunchScreen.storyboard */,
 				EC28B8901ED02F5E00E9A052 /* Info.plist */,
@@ -310,27 +331,6 @@
 				EC28B8A61ED172F800E9A052 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EC28B8DB1ED426CD00E9A052 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				ECD4170B1F050853007F2D50 /* JHUD */,
-				EC28B9B81ED6889C00E9A052 /* SDCycleScrollView */,
-				EC28B8DC1ED4273800E9A052 /* AFN */,
-			);
-			name = libs;
-			sourceTree = "<group>";
-		};
-		EC28B8DC1ED4273800E9A052 /* AFN */ = {
-			isa = PBXGroup;
-			children = (
-				EC28B92A1ED42D5800E9A052 /* AFAppDotNetAPIClient.h */,
-				EC28B92B1ED42D5800E9A052 /* AFAppDotNetAPIClient.m */,
-				EC28B90C1ED42D3300E9A052 /* UIKit+AFNetworking */,
-				EC28B8F81ED42D0D00E9A052 /* AFNetworking */,
-			);
-			name = AFN;
 			sourceTree = "<group>";
 		};
 		EC28B8EB1ED4297200E9A052 /* Frameworks */ = {
@@ -365,6 +365,7 @@
 				EC28B9051ED42D2400E9A052 /* AFURLSessionManager.m */,
 			);
 			name = AFNetworking;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		EC28B90C1ED42D3300E9A052 /* UIKit+AFNetworking */ = {
@@ -392,6 +393,7 @@
 				EC28B9201ED42D4D00E9A052 /* UIWebView+AFNetworking.m */,
 			);
 			name = "UIKit+AFNetworking";
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		EC28B9B81ED6889C00E9A052 /* SDCycleScrollView */ = {
@@ -456,15 +458,6 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		EC60B2171F32F50B00DF7C4D /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				EC6A55401EDFBB180084D152 /* DetailViewController.h */,
-				EC6A55411EDFBB180084D152 /* DetailViewController.m */,
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
 		EC60B2181F32F51F00DF7C4D /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +500,7 @@
 		EC60B21B1F32F5B200DF7C4D /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				EC60B2161F32F4EE00DF7C4D /* Search */,
 				EC60B2221F32F85100DF7C4D /* Classify */,
 				EC60B21E1F32F7FB00DF7C4D /* Home */,
 				EC60B21D1F32F7E200DF7C4D /* More */,
@@ -523,6 +517,7 @@
 				EC28B8BA1ED1B00200E9A052 /* shicai.txt */,
 				EC286A1E1ED960BF0026D293 /* category_hot.plist */,
 				EC6A55171EDE6F210084D152 /* cookbook.plist */,
+				EC60B2271F3300A900DF7C4D /* cookstep.plist */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -549,6 +544,8 @@
 		EC60B21F1F32F81100DF7C4D /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				EC6A55401EDFBB180084D152 /* DetailViewController.h */,
+				EC6A55411EDFBB180084D152 /* DetailViewController.m */,
 				EC28B89C1ED12EB800E9A052 /* HomeViewController.h */,
 				EC28B89D1ED12EB800E9A052 /* HomeViewController.m */,
 			);
@@ -722,6 +719,7 @@
 				EC28B9DE1ED6896800E9A052 /* h4.jpg in Resources */,
 				EC28B8BB1ED1B00200E9A052 /* fenlei.txt in Resources */,
 				EC28B8BD1ED1B00200E9A052 /* shicai.txt in Resources */,
+				EC60B2281F3300A900DF7C4D /* cookstep.plist in Resources */,
 				EC28B9E11ED6896800E9A052 /* pageControlDot@2x.png in Resources */,
 				EC7058181EE7F66D00EE746F /* SearchResultCell.xib in Resources */,
 				EC28B88C1ED02F5E00E9A052 /* Assets.xcassets in Resources */,
@@ -958,6 +956,7 @@
 				DEVELOPMENT_TEAM = 8CEF2A8UUW;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = caipudaquan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhhl.caipudaquan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -972,6 +971,7 @@
 				DEVELOPMENT_TEAM = 8CEF2A8UUW;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = caipudaquan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhhl.caipudaquan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
